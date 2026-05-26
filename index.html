@@ -3372,6 +3372,31 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Hash-based routing
+        window.addEventListener('hashchange', function () {
+            var tab = location.hash.replace('#', '');
+            if (tab && document.querySelector('[data-tab="' + tab + '"]')) {
+                switchTab(tab);
+            }
+        });
+
+        // Init from URL hash on page load
+        (function () {
+            var tab = location.hash.replace('#', '') || 'home';
+            if (document.querySelector('[data-tab="' + tab + '"]')) {
+                switchTab(tab);
+            }
+        })();
+
+        // Update hash when tab switches
+        var _origSwitch = switchTab;
+        switchTab = function (tabName) {
+            if (location.hash !== '#' + tabName) {
+                history.pushState(null, '', '#' + tabName);
+            }
+            _origSwitch(tabName);
+        };
+
         // Mobile hamburger toggle
         document.getElementById('navToggle').addEventListener('click', function () {
             document.getElementById('navLinks').classList.toggle('open');
