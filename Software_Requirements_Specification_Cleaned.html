@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Requirements Specification</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.7;
+    color: #222;
+    background: #f9f9f9;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+h1, h2, h3, h4 {
+    color: #1f3c88;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+code {
+    background: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+pre {
+    background: #f0f0f0;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 6px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: #0066cc;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="markdown-body container-fluid no-highlight-all comment-enabled" data-hard-breaks="true" id="doc" lang="en-US"><h1 data-id="Software-Requirements-Specification" id="Software-Requirements-Specification"><a class="anchor hidden-xs" href="#Software-Requirements-Specification" title="Software-Requirements-Specification"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>Software Requirements Specification</span></h1><h2 data-id="For-SafePath" id="For-SafePath"><a class="anchor hidden-xs" href="#For-SafePath" title="For-SafePath"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>For SafePath</span></h2><p><span>Version 0.1</span><br/>
+<span>Prepared by Group H</span><br/>
+<span>May 20, 2026</span></p><h2 data-id="Table-of-Contents" id="Table-of-Contents"><a class="anchor hidden-xs" href="#Table-of-Contents" title="Table-of-Contents"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>Table of Contents</span></h2><ul>
+<li><a href="#1-introduction"><span>1. Introduction</span></a>
+<ul>
+<li><a href="#11-document-purpose"><span>1.1 Document Purpose</span></a></li>
+<li><a href="#12-product-scope"><span>1.2 Product Scope</span></a></li>
+<li><a href="#13-definitions-acronyms-and-abbreviations"><span>1.3 Definitions, Acronyms, and Abbreviations</span></a></li>
+<li><a href="#14-references"><span>1.4 References</span></a></li>
+<li><a href="#15-document-overview"><span>1.5 Document Overview</span></a></li>
+</ul>
+</li>
+<li><a href="#2-product-overview"><span>2. Product Overview</span></a>
+<ul>
+<li><a href="#21-product-perspective"><span>2.1 Product Perspective</span></a></li>
+<li><a href="#22-product-functions"><span>2.2 Product Functions</span></a></li>
+<li><a href="#23-product-constraints"><span>2.3 Product Constraints</span></a></li>
+<li><a href="#24-user-characteristics"><span>2.4 User Characteristics</span></a></li>
+<li><a href="#25-assumptions-and-dependencies"><span>2.5 Assumptions and Dependencies</span></a></li>
+<li><a href="#26-apportioning-of-requirements"><span>2.6 Apportioning of Requirements</span></a></li>
+</ul>
+</li>
+<li><a href="#3-requirements"><span>3. Requirements</span></a>
+<ul>
+<li><a href="#31-external-interfaces"><span>3.1 External Interfaces</span></a></li>
+<li><a href="#32-functional"><span>3.2 Functional</span></a></li>
+<li><a href="#33-quality-of-service"><span>3.3 Quality of Service</span></a></li>
+<li><a href="#34-compliance"><span>3.4 Compliance</span></a></li>
+<li><a href="#35-design-and-implementation"><span>3.5 Design and Implementation</span></a></li>
+<li><a href="#36-aiml"><span>3.6 AI/ML</span></a></li>
+</ul>
+</li>
+<li><a href="#4-verification"><span>4. Verification</span></a></li>
+<li><a href="#5-appendixes"><span>5. Appendixes</span></a></li>
+</ul><h2 data-id="Revision-History" id="Revision-History"><a class="anchor hidden-xs" href="#Revision-History" title="Revision-History"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>Revision History</span></h2><table>
+<thead>
+<tr>
+<th><span>Name</span></th>
+<th><span>Date</span></th>
+<th><span>Reason For Changes</span></th>
+<th><span>Version</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>Initial</span></td>
+<td><span>5.20.26</span></td>
+<td></td>
+<td><span>0.1</span></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><h2 data-id="1-Introduction" id="1-Introduction"><a class="anchor hidden-xs" href="#1-Introduction" title="1-Introduction"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1. Introduction</span></h2><p><span>This Software Requirements Specification (SRS) defines the requirements for the safe walking route application developed for the PBL3 Creative Design project. It outlines the product scope, target audiences, and the specific functional and non-functional requirements necessary to implement the route comparison system. Details regarding specific constraints and models are referenced in their respective sections below.</span></p><h3 data-id="11-Document-Purpose" id="11-Document-Purpose"><a class="anchor hidden-xs" href="#11-Document-Purpose" title="11-Document-Purpose"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.1 Document Purpose</span></h3><p><span>This Software Requirements Specification (SRS) aims at defining the functional and non-functional requirements of the SafePath system, a pedestrian navigation platform that emphasises personal safety during route generation. This document describes what the system needs to do (safety evaluation, route optimisation, user reporting, data processing requirements) without defining the final implementation or software architecture.</span></p><p><span>This document is aimed at the Group H development team, project stakeholders, testers, and future maintainers. The SRS will serve as a reference during the system design, implementation, testing, validation and future enhancements phases of the software development lifecycle. It can also be used in conjunction with related documents such as project proposal, system architecture design and development roadmap.</span></p><h3 data-id="12-Product-Scope" id="12-Product-Scope"><a class="anchor hidden-xs" href="#12-Product-Scope" title="12-Product-Scope"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.2 Product Scope</span></h3><p><span>SafePath (Version 0.1) is a web-based route-planning application that generates walking directions optimised for safety rather than travel time. It consumes streetlight location data, crime incident records, and user-contributed safety reports to score road segments on perceived and objective safety. The system outputs directions with a safety score breakdown, enabling users to make informed decisions about their route. Key capabilities include safety-weighted routing (based on streetlight data, user reports, and calculating a localized safety score for street segments using a Kernel Density Estimation (KDE) model applied to historical crime data), transparent safety scoring, crime-heatmap overlays, and crowd-sourced incident reporting. This SRS covers the public-facing web application, routing engine, and data ingestion pipeline. Excluded are native mobile applications, real-time location tracking, and city-maintenance integration, which are deferred to future releases.</span></p><h3 data-id="13-Definitions-Acronyms-and-Abbreviations" id="13-Definitions-Acronyms-and-Abbreviations"><a class="anchor hidden-xs" href="#13-Definitions-Acronyms-and-Abbreviations" title="13-Definitions-Acronyms-and-Abbreviations"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.3 Definitions, Acronyms, and Abbreviations</span></h3><p><span>To ensure consistent interpretation among technical developers and non-technical stakeholders, the following glossary defines specialized engineering, geospatial, and business domains utilized throughout this document:</span></p><table>
+<thead>
+<tr>
+<th><span>Term</span></th>
+<th><span>Definition</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>API</span></td>
+<td><span>Application Programming Interface - Application Programming Interface – A standardized set of protocols and definitions allowing distinct software applications to securely communicate and exchange data.</span></td>
+</tr>
+<tr>
+<td><span>CSV</span></td>
+<td><span>Comma-Separated Values – A plain-text file format utilized to store tabular data structured neatly in rows and columns.</span></td>
+</tr>
+<tr>
+<td><span>Cost Surface</span></td>
+<td><span>A continuous spatial grid or vector line network where each distinct segment holds a numerical weight ("cost") representing localized environmental risk or resistance, rather than linear distance alone.</span></td>
+</tr>
+<tr>
+<td><span>ETL</span></td>
+<td><span>Extract, Transform, Load – A continuous data engineering pipeline process that retrieves raw data from source locations, alters it to fit operational profiles, and writes it to a target database.</span></td>
+</tr>
+<tr>
+<td><span>FSD/SRS</span></td>
+<td><span>Functional Specification Document / Software Requirements Specification – Detailed technical documentation outlining system behaviors, functional requirements, and criteria for software verification.</span></td>
+</tr>
+<tr>
+<td><span>GIS</span></td>
+<td><span>Geographic Information System – A specialized framework designed to capture, store, manipulate, analyze, manage, and present diverse forms of spatial or geographical data.</span></td>
+</tr>
+<tr>
+<td><span>KDE</span></td>
+<td><span>Kernel Density Estimation – A non-parametric mathematical smoothing technique used in spatial statistics to transform discrete coordinate points (e.g., individual crime locations) into a continuous probability density surface.</span></td>
+</tr>
+<tr>
+<td><span>Luminance Buffer</span></td>
+<td><span>A computed 15–20 meter radial vector boundary extending from a structural streetlight coordinate point, indicating a statistically valid "safe zone" of active illumination.</span></td>
+</tr>
+<tr>
+<td><span>RTM</span></td>
+<td><span>Risk Terrain Modeling – An analytical framework that diagnoses the spatial landscape of an urban environment to evaluate how specific environmental layout features contribute to the latent risk of criminal events.</span></td>
+</tr>
+<tr>
+<td><span>Temporal Decay</span></td>
+<td><span>A mathematical function that systematically reduces the numerical weight or significance of historical data points over time, ensuring older incidents have less impact on current cost calculations than recent events.</span></td>
+</tr>
+<tr>
+<td><span>WGS84</span></td>
+<td><span>World Geodetic System 1984 – The standard geodetic reference coordinate system used globally for spatial mapping and GPS calculations.</span></td>
+</tr>
+</tbody>
+</table><h3 data-id="14-References" id="14-References"><a class="anchor hidden-xs" href="#14-References" title="14-References"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.4 References</span></h3><table>
+<thead>
+<tr>
+<th><span>Reference</span></th>
+<th><span>Author/Owner</span></th>
+<th><span>Version</span></th>
+<th><span>Date</span></th>
+<th><span>Location</span></th>
+<th><span>Type</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>Ambient lighting, use of outdoor spaces and perceptions of public safety</span></td>
+<td><span>Nanda et al.</span></td>
+<td><span>N/A</span></td>
+<td><span>2023</span></td>
+<td><a href="http://pmc.ncbi.nlm.nih.gov/articles/PMC8038535/" rel="noopener ugc nofollow" target="_blank"><span>pmc.ncbi.nlm.nih.gov/articles/PMC8038535/</span></a></td>
+<td><span>Informative</span></td>
+</tr>
+<tr>
+<td><span>Light distribution in dynamic street lighting: effects on perceived safety</span></td>
+<td><span>Rea et al.</span></td>
+<td><span>N/A</span></td>
+<td><span>2013</span></td>
+<td><a href="http://sciencedirect.com" rel="noopener ugc nofollow" target="_blank"><span>sciencedirect.com</span></a></td>
+<td><span>Informative</span></td>
+</tr>
+<tr>
+<td><span>A Mobile Information System Based on Crowd-Sensed and Official Crime Data for Finding Safe Routes</span></td>
+<td><span>Ceja et al.</span></td>
+<td><span>N/A</span></td>
+<td><span>2016</span></td>
+<td><a href="http://onlinelibrary.wiley.com/doi/pdf/10.1155/2016/8068209" rel="noopener ugc nofollow" target="_blank"><span>onlinelibrary.wiley.com/doi/pdf/10.1155/2016/8068209</span></a></td>
+<td><span>Informative</span></td>
+</tr>
+<tr>
+<td><span>GraphHopper Routing Engine</span></td>
+<td><span>GraphHopper GmbH</span></td>
+<td><span>9.x</span></td>
+<td><span>2025</span></td>
+<td><a href="https://github.com/graphhopper/graphhopper" rel="noopener ugc nofollow" target="_blank"><span>github.com/graphhopper/graphhopper</span></a></td>
+<td><span>Normative</span></td>
+</tr>
+<tr>
+<td><span>openrouteservice API</span></td>
+<td><span>GIScience Heidelberg</span></td>
+<td><span>7.x</span></td>
+<td><span>2025</span></td>
+<td><a href="https://github.com/GIScience/openrouteservice" rel="noopener ugc nofollow" target="_blank"><span>github.com/GIScience/openrouteservice</span></a></td>
+<td><span>Normative</span></td>
+</tr>
+<tr>
+<td><span>Philadelphia Crime Incidents Dataset</span></td>
+<td><span>OpenDataPhilly</span></td>
+<td><span>Annual</span></td>
+<td><span>2006–2026</span></td>
+<td><a href="http://opendataphilly.org" rel="noopener ugc nofollow" target="_blank"><span>opendataphilly.org</span></a></td>
+<td><span>Normative</span></td>
+</tr>
+<tr>
+<td><span>Philadelphia Street Poles Dataset</span></td>
+<td><span>OpenDataPhilly</span></td>
+<td><span>Current</span></td>
+<td><span>2026</span></td>
+<td><a href="http://opendataphilly.org" rel="noopener ugc nofollow" target="_blank"><span>opendataphilly.org</span></a></td>
+<td><span>Normative</span></td>
+</tr>
+<tr>
+<td><span>Urban Navigation Beyond Shortest Route: The Case of Safe Paths</span></td>
+<td><span>Galbrun, E., Pelechrinis, K., Terzi, E.</span></td>
+<td><span>N/A</span></td>
+<td><span>2015</span></td>
+<td><a href="https://doi.org/10.1016/j.is.2015.10.005" rel="noopener ugc nofollow" target="_blank"><span>Information Systems. 57.</span></a></td>
+<td><span>Academic Paper</span></td>
+</tr>
+<tr>
+<td><span>A Crowd-Sourced Adaptive Safe Navigation for Smart Cities</span></td>
+<td><span>Goel, N., Sharma, R., Nikhil, N., Mahanoor, S. D., Saini, M.</span></td>
+<td><span>N/A</span></td>
+<td><span>2017</span></td>
+<td><a href="https://doi.ieeecomputersociety.org/10.1109/ISM.2017.77" rel="noopener ugc nofollow" target="_blank"><span>2017 IEEE International Symposium on Multimedia (ISM), Taichung, Taiwan</span></a></td>
+<td><span>Academic Paper</span></td>
+</tr>
+<tr>
+<td><span>Crime Incident Reports (August 2015 To Date)</span></td>
+<td><span>City of Boston</span></td>
+<td><span>Current</span></td>
+<td><span>2015-Present</span></td>
+<td><a href="https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system" rel="noopener ugc nofollow" target="_blank"><span>https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system</span></a></td>
+<td><span>Dataset</span></td>
+</tr>
+<tr>
+<td><span>Streetlight Locations</span></td>
+<td><span>City of Boston</span></td>
+<td><span>Legacy</span></td>
+<td><span>2023</span></td>
+<td><a href="https://data.boston.gov/dataset/streetlight-locations" rel="noopener ugc nofollow" target="_blank"><span>https://data.boston.gov/dataset/streetlight-locations</span></a></td>
+<td><span>Dataset</span></td>
+</tr>
+</tbody>
+</table><h3 data-id="15-Document-Overview" id="15-Document-Overview"><a class="anchor hidden-xs" href="#15-Document-Overview" title="15-Document-Overview"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.5 Document Overview</span></h3><p><span>This document is organized systematically into five primary chapters to guide stakeholders through the engineering lifecycle of SafePath:</span></p><ul>
+<li>
+<p><span>Section 1: Introduction defines the purpose, scope, authoritative terminology, and foundational constraints of the project.</span></p>
+</li>
+<li>
+<p><span>Section 2: Product Overview provides context and operational dependencies.</span></p>
+</li>
+<li>
+<p><span>Section 3: Requirements delivers detailed and testable technical system criteria divided into User Interfaces (UI), External System Interfaces, Functional Requirements (FR), and Non-Functional Quality of Service (QoS) constraints.</span></p>
+</li>
+<li>
+<p><span>Section 4: Verification outlines the system evaluation matrix, mapping each explicit requirement ID directly to standard testing, analysis, inspection, or demonstration scripts.</span></p>
+</li>
+<li>
+<p><span>Section 5: Appendix contains survey and interview results and a glossary.</span></p>
+</li>
+</ul><p><span>Document updates, scope alterations are cataloged in the Revision History located at the top of this document.</span></p><h3 data-id="16-Risks-and-Assumptions" id="16-Risks-and-Assumptions"><a class="anchor hidden-xs" href="#16-Risks-and-Assumptions" title="16-Risks-and-Assumptions"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>1.6 Risks and Assumptions</span></h3><p><span>The feasibility of SafePath relies on the mitigation of the following known project assumptions and computational risks:</span></p><ul>
+<li>
+<p><span>Assumption 1: Spatial Completeness of Municipal Data</span><br/>
+<span>The system assumes that the open-source GIS repositories provided by target municipalities are structurally complete, accurate, updated regularly, and contain precise absolute longitude/latitude coordinates for both streetlight assets and public crime data.</span></p>
+</li>
+<li>
+<p><span>Risk 1: High Latency in High-Density Urban Routing Networks</span></p>
+<ul>
+<li><span>Description: Real-time execution of a dynamic, multi-factor </span><span class="mathjax raw">\(A^*\)</span><span> pathfinding algorithm across extensive urban street networks can cause high computational server lag or browser timeouts under heavy user traffic.</span></li>
+<li><span>Mitigation: The weights will be precomputed and stored to minimize computation time.</span></li>
+</ul>
+</li>
+<li>
+<p><span>Risk 2: Reporting Lags and Crime API Stale Rates</span></p>
+<ul>
+<li><span>Description: Public crime databases managed by municipalities often suffer from reporting delays which diminishes the real-time accuracy of temporal crime data.</span></li>
+<li><span>Mitigation: The system will utilize a hybrid weighting mechanism that relies on crowdsourced live incident reports.</span></li>
+</ul>
+</li>
+</ul><h2 data-id="2-Product-Overview" id="2-Product-Overview"><a class="anchor hidden-xs" href="#2-Product-Overview" title="2-Product-Overview"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2. Product Overview</span></h2><h3 data-id="21-Product-Perspective" id="21-Product-Perspective"><a class="anchor hidden-xs" href="#21-Product-Perspective" title="21-Product-Perspective"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.1 Product Perspective</span></h3><p><span>SafePath is a new product developed as part of a university project (PBL 3, Semester 3) by Group H. It does not replace an existing system but addresses a gap in current navigation services: no major provider (Google Maps, Apple Maps, etc.) offers pedestrian routing that accounts for street lighting, crime risk, and environmental hazards. The system depends on publicly available municipal open-data portals for streetlight and crime-incident data, and on open-source routing engines (GraphHopper or openrouteservice) for path computation.</span></p><h3 data-id="22-Product-Functions" id="22-Product-Functions"><a class="anchor hidden-xs" href="#22-Product-Functions" title="22-Product-Functions"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.2 Product Functions</span></h3><p><span>The main purpose of the app is to find and offer safer alternative routes. It builds a street-by-street safe path using maps, crime stats, and live user reports.</span></p><p><span>The major functional capabilities provided to users and external systems are categorized into the following primary areas:</span></p><p><strong><span>Safety-Weighted Route Generation</span></strong></p><ul>
+<li><span>Computes walking paths between a source and destination by minimizing a composite safety cost algorithm.</span></li>
+<li><span>Dynamically switches routing logic during nighttime hours to prioritize continuous high-visibility street segments.</span></li>
+</ul><p><strong><span>Streetlight Infrastructure Overlay</span></strong></p><ul>
+<li><span>Extracts and displays streetlight locations onto the user interface map view using municipal datasets and external Geographic Information System (GIS) data layers.</span><br/>
+<span>Directly injects the presence or absence of "lit" tags into the real-time routing engine's safety scoring model.</span></li>
+</ul><p><strong><span>Spatio-Temporal Crime Heatmap Overlay</span></strong></p><ul>
+<li><span>Visualizes localized historical crime incident densities across specific street segments and alleyways.</span></li>
+</ul><p><strong><span>Route Safety Score Breakdown</span></strong></p><ul>
+<li><span>Provides safety ratings for each generated route option.</span></li>
+</ul><p><strong><span>Crowdsourced Incident Reporting</span></strong></p><ul>
+<li><span>Enables users to actively submit geo-tagged incident reports directly from their current location.</span></li>
+<li><span>Supports reporting anomalies such as broken streetlights, environmental hazards, and suspicious or threatening activity.</span></li>
+</ul><p><strong><span>Personalized Risk Profile Customization</span></strong></p><ul>
+<li><span>The system will offer predefined routing profiles. Users can either use the default balanced route or select an alternative profile that prioritizes specific safety factors (e.g., environmental lighting or historical data).</span></li>
+</ul><hr/><h3 data-id="23-Product-Constraints" id="23-Product-Constraints"><a class="anchor hidden-xs" href="#23-Product-Constraints" title="23-Product-Constraints"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.3 Product Constraints</span></h3><ul>
+<li><span>The system shall use open-source routing software for path computation to avoid licensing costs</span></li>
+<li><span>All municipal data ingested must be from openly licensed or public-domain sources</span></li>
+<li><span>The prototype must target a single pilot city with available streetlight and crime data</span></li>
+<li><span>The system must not require user accounts or persistent location tracking to function</span></li>
+<li><span>The web UI must be accessible via modern browsers</span></li>
+<li><span>The prototype must operate with offline data snapshots rather than real-time API connections to municipal data sources</span></li>
+<li><span>AI/ML components (if any) must be limited to crime risk prediction using publicly available datasets</span></li>
+</ul><h3 data-id="24-User-Characteristics" id="24-User-Characteristics"><a class="anchor hidden-xs" href="#24-User-Characteristics" title="24-User-Characteristics"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.4 User Characteristics</span></h3><p><span>The SafePath system is built for multiple user classes with different goals, access levels and interaction patterns.</span></p><ul>
+<li><span>Primary Users – Pedestrian Users</span></li>
+</ul><p><span>The primary users are pedestrians looking for safer walking routes. These users will interact with the system using mobile or web interfaces. Their main task is to safely traverse urban areas and avoid poorly lit or high risk areas. Users can also help the platform by submitting reports about anomalies such as unsafe areas, broken streetlights, suspicious activity or temporary hazards. They’re expected to use the system regularly and help improve route accuracy with crowdsourced feedback.</span></p><ul>
+<li><span>Administrators</span></li>
+</ul><p><span>Administrators oversee user-generated content, examine inappropriate reports, and protect the integrity of the system. This user class has advanced access privileges, including content moderation and system management capabilities.</span></p><ul>
+<li><span>City Planners and Researchers</span></li>
+</ul><p><span>City authorities, planners or researchers can use SafePath to analyse urban safety trends and weaknesses in infrastructure. They can identify high-risk “dark zones” and use the data insights from the system to improve public safety planning.</span></p><ul>
+<li><span>Localisation and Accessibility Issues</span></li>
+</ul><p><span>The system needs to be able to provide responsive web access. User interfaces should be designed to be accessible, which includes features like readable fonts, clear navigation, colour contrast, and easy-to-follow interaction flows. Future versions of the system could have multilingual support and localisation capabilities to cater to the needs of a diverse urban population.</span></p><h3 data-id="25-Assumptions-and-Dependencies" id="25-Assumptions-and-Dependencies"><a class="anchor hidden-xs" href="#25-Assumptions-and-Dependencies" title="25-Assumptions-and-Dependencies"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.5 Assumptions and Dependencies</span></h3><ul>
+<li><strong><span>Assumptions</span></strong><span>: (1) the selected pilot city continues to publish streetlight and crime data under open licenses; (2) open-source routing software remains available and maintained; (3) target users have internet-connected devices with modern browsers; (4) users find value in safety scoring and are willing to trade some trip distance for perceived safety</span></li>
+<li><strong><span>Dependencies</span></strong><span>: (1) open-source library for routing; (2) municipal open-data portals for streetlight and crime data; (3) map tile provider for base map rendering (e.g. OpenStreetMap); (4) survey and interview findings as input evidence for requirement prioritisation</span></li>
+<li><strong><span>Impact if false</span></strong><span>: unavailable municipal data would require switching pilot city or acquiring commercial satellite imagery ($10–$33/km² with minimum order quantities); unavailable routing library would require developing an in-house routing engine, substantially increasing scope</span></li>
+</ul><h3 data-id="26-Apportioning-of-Requirements" id="26-Apportioning-of-Requirements"><a class="anchor hidden-xs" href="#26-Apportioning-of-Requirements" title="26-Apportioning-of-Requirements"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.6 Apportioning of Requirements</span></h3><p><span>Requirements are allocated across three primary subsystems and two release increments. The prototype (v0.1) targets the pilot-city demonstration deadline; deferred features are tracked for post-prototype releases.</span></p><h4 data-id="261-Subsystem-Allocation" id="261-Subsystem-Allocation"><a class="anchor hidden-xs" href="#261-Subsystem-Allocation" title="261-Subsystem-Allocation"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.6.1 Subsystem Allocation</span></h4><table>
+<thead>
+<tr>
+<th><span>Requirement ID(s)</span></th>
+<th><span>Subsystem</span></th>
+<th><span>Release</span></th>
+<th><span>Notes</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>REQ-INT-UI-001 through REQ-INT-UI-009</span></td>
+<td><span>Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Map UI, overlays, score panel, routing profiles</span></td>
+</tr>
+<tr>
+<td><span>REQ-INT-HW-001 through REQ-INT-HW-003</span></td>
+<td><span>Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Cross-device compatibility</span></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-001</span></td>
+<td><span>Routing Engine</span></td>
+<td><span>v0.1</span></td>
+<td><span>open-source routing API integration with custom safety weights</span></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-002, REQ-INT-SW-003</span></td>
+<td><span>Data Pipeline</span></td>
+<td><span>v0.1</span></td>
+<td><span>CSV/GeoJSON ingestion of municipal streetlight and crime data</span></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-004</span></td>
+<td><span>Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Base map tile rendering (raster or vector)</span></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-005</span></td>
+<td><span>Backend</span></td>
+<td><span>v0.1</span></td>
+<td><span>No public API exposed in prototype</span></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-001 through REQ-FUNC-004</span></td>
+<td><span>Routing Engine + Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Route computation (Frontend call via internal API consumed by the UI)</span></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-005, REQ-FUNC-006</span></td>
+<td><span>Web Frontend + Data Pipeline</span></td>
+<td><span>v0.1</span></td>
+<td><span>Heatmap rendering (Frontend) depends on preprocessing (Data Pipeline)</span></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-007, REQ-FUNC-008</span></td>
+<td><span>Web Frontend + Reporting Service</span></td>
+<td><span>v0.1</span></td>
+<td><span>Score transparency panel; report submission and map display</span></td>
+</tr>
+<tr>
+<td><span>REQ-PERF-001</span></td>
+<td><span>Routing Engine</span></td>
+<td><span>v0.1</span></td>
+<td><span>Server-side route computation latency</span></td>
+</tr>
+<tr>
+<td><span>REQ-PERF-002</span></td>
+<td><span>Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Client-side map loading time</span></td>
+</tr>
+<tr>
+<td><span>REQ-SEC-001</span></td>
+<td><span>Web Frontend + Backend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Location consent enforcement</span></td>
+</tr>
+<tr>
+<td><span>REQ-REL-001</span></td>
+<td><span>Routing Engine</span></td>
+<td><span>v0.1</span></td>
+<td><span>Graceful degradation on missing data</span></td>
+</tr>
+<tr>
+<td><span>REQ-AVAIL-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Demonstration availability</span></td>
+</tr>
+<tr>
+<td><span>REQ-OBS-001</span></td>
+<td><span>Backend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Error logging infrastructure</span></td>
+</tr>
+<tr>
+<td><span>REQ-COMP-001, REQ-COMP-002</span></td>
+<td><span>Web Frontend</span></td>
+<td><span>v0.1</span></td>
+<td><span>Attribution and licensing notices in UI</span></td>
+</tr>
+<tr>
+<td><span>REQ-INST-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Modular deployment packaging</span></td>
+</tr>
+<tr>
+<td><span>REQ-BUILD-001</span></td>
+<td><span>Documentation</span></td>
+<td><span>v0.1</span></td>
+<td><span>Build and run instructions</span></td>
+</tr>
+<tr>
+<td><span>REQ-DIST-001</span></td>
+<td><span>Data Pipeline</span></td>
+<td><span>v0.1</span></td>
+<td><span>Single-city data packaging</span></td>
+</tr>
+<tr>
+<td><span>REQ-MAINT-001</span></td>
+<td><span>Data Pipeline</span></td>
+<td><span>v0.1</span></td>
+<td><span>Data refresh documentation</span></td>
+</tr>
+<tr>
+<td><span>REQ-REUSE-001</span></td>
+<td><span>Data Pipeline</span></td>
+<td><span>v0.1</span></td>
+<td><span>City-config separation from code</span></td>
+</tr>
+<tr>
+<td><span>REQ-PORT-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Cross-machine consistency</span></td>
+</tr>
+<tr>
+<td><span>REQ-COST-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Zero-cost dependency audit</span></td>
+</tr>
+<tr>
+<td><span>REQ-DEAD-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Semester deadline constraint</span></td>
+</tr>
+<tr>
+<td><span>REQ-POC-001</span></td>
+<td><span>Routing Engine</span></td>
+<td><span>v0.1</span></td>
+<td><span>Pre-implementation feasibility check</span></td>
+</tr>
+<tr>
+<td><span>REQ-CM-001</span></td>
+<td><span>All</span></td>
+<td><span>v0.1</span></td>
+<td><span>Version-controlled data and scripts</span></td>
+</tr>
+<tr>
+<td><span>REQ-ML-001 through REQ-ML-006</span></td>
+<td><span>AI/ML Subsystem</span></td>
+<td><span>v0.1</span></td>
+<td><span>Crime prediction model: model card, training data provenance, abstention, ethics documentation, and disclosure</span></td>
+</tr>
+</tbody>
+</table><h4 data-id="262-Release-Roadmap" id="262-Release-Roadmap"><a class="anchor hidden-xs" href="#262-Release-Roadmap" title="262-Release-Roadmap"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.6.2 Release Roadmap</span></h4><table>
+<thead>
+<tr>
+<th><span>Increment</span></th>
+<th><span>Focus</span></th>
+<th><span>Key Deliverables</span></th>
+<th><span>Target Date</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>v0.1 Prototype</span></td>
+<td><span>Core routing with safety weighting, heatmap overlay, crowdsourced reporting, score transparency</span></td>
+<td><span>All REQ-FUNC-001 through REQ-FUNC-008, full UI, single-city data pipeline</span></td>
+<td><span>End of semester</span></td>
+</tr>
+<tr>
+<td><span>v1.0+</span></td>
+<td><span>Multi-city support, native mobile apps, real-time tracking, city-maintenance integration</span></td>
+<td></td>
+<td><span>Post-prototype</span></td>
+</tr>
+</tbody>
+</table><h4 data-id="263-Unknown-or-Unconfirmed-Allocations" id="263-Unknown-or-Unconfirmed-Allocations"><a class="anchor hidden-xs" href="#263-Unknown-or-Unconfirmed-Allocations" title="263-Unknown-or-Unconfirmed-Allocations"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>2.6.3 Unknown or Unconfirmed Allocations</span></h4><ul>
+<li><strong><span>Real-time tracking and turn-by-turn navigation</span></strong><span>: Not allocated in v0.1; feasibility and demand to be re-evaluated for v1.0+ based on survey and interview feedback indicating pre-trip planning preference.</span></li>
+<li><strong><span>Native mobile applications</span></strong><span>: Deferred; v0.1 targets responsive web only.</span></li>
+<li><strong><span>City-maintenance dashboard integration</span></strong><span>: Deferred; requires stakeholder engagement beyond current project scope.</span></li>
+</ul><h2 data-id="3-Requirements" id="3-Requirements"><a class="anchor hidden-xs" href="#3-Requirements" title="3-Requirements"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3. Requirements</span></h2><h3 data-id="31-External-Interfaces" id="31-External-Interfaces"><a class="anchor hidden-xs" href="#31-External-Interfaces" title="31-External-Interfaces"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.1 External Interfaces</span></h3><p><span>This section describes the external interfaces used by the SafePath system in support of navigation, geospatial analysis, crime data integration and community based reporting. These interfaces define how the system communicates with external services, datasets, users and third party platforms. The interfaces defined in this document are the input/output specifications required for system implementation, integration, and testing throughout the software development lifecycle.</span></p><h4 data-id="311-User-Interfaces" id="311-User-Interfaces"><a class="anchor hidden-xs" href="#311-User-Interfaces" title="311-User-Interfaces"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.1.1 User Interfaces</span></h4><ul>
+<li><span>REQ-INT-UI-001: The system shall provide a web-based map interface with a start-point input, destination input, and a "Find Safe Route" button</span></li>
+<li><span>REQ-INT-UI-002: The system shall display the computed route as a coloured polyline on the map, with colour indicating per-segment safety level (green = safe, yellow = moderate, red = unsafe)</span></li>
+<li><span>REQ-INT-UI-003: The system shall provide a toggle to overlay streetlight locations as point markers on the map</span></li>
+<li><span>REQ-INT-UI-004: The system shall provide a toggle to overlay a crime heatmap layer</span></li>
+<li><span>REQ-INT-UI-005: The system shall display a safety score breakdown panel showing lighting, crime, anomalies, and overall scores for the selected route</span></li>
+<li><span>REQ-INT-UI-006: The system shall offer predefined routing profiles, allowing users to select a default balanced route or an alternative profile that prioritizes specific safety factors (e.g., environmental lighting or historical data).</span></li>
+<li><span>REQ-INT-UI-007: The system shall display an option to open a tooltip or info box when a route is selected, explaining factors affecting its safety score</span></li>
+<li><span>REQ-INT-UI-008: The system shall render correctly on screens at least 360 px wide.</span></li>
+<li><span>REQ-INT-UI-009: The system shall prompt for location access but not send location data without explicit user action</span></li>
+</ul><h4 data-id="312-Hardware-Interfaces" id="312-Hardware-Interfaces"><a class="anchor hidden-xs" href="#312-Hardware-Interfaces" title="312-Hardware-Interfaces"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.1.2 Hardware Interfaces</span></h4><ul>
+<li><span>REQ-INT-HW-001: The system shall operate on any device capable of running a modern web browser</span></li>
+<li><span>REQ-INT-HW-002: The system shall function with touch input and mouse/pointer input equivalently</span></li>
+<li><span>REQ-INT-HW-003: The system shall not require any specialised hardware peripherals</span></li>
+</ul><h4 data-id="313-Software-Interfaces" id="313-Software-Interfaces"><a class="anchor hidden-xs" href="#313-Software-Interfaces" title="313-Software-Interfaces"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.1.3 Software Interfaces</span></h4><ul>
+<li><span>REQ-INT-SW-001: The system shall use an open source API for route computation, passing custom edge weights derived from safety data</span></li>
+<li><span>REQ-INT-SW-002: The system shall consume streetlight location data from a processed CSV/GeoJSON file ingested from the municipal open-data portal</span></li>
+<li><span>REQ-INT-SW-003: The system shall consume crime incident data from a processed CSV/GeoJSON file ingested from the municipal open-data portal</span></li>
+<li><span>REQ-INT-SW-004: The system shall use raster or vector tiles for base map display</span></li>
+<li><span>REQ-INT-SW-005: The system shall expose no public API in the prototype release</span></li>
+</ul><h3 data-id="32-Functional" id="32-Functional"><a class="anchor hidden-xs" href="#32-Functional" title="32-Functional"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.2 Functional</span></h3><ul>
+<li>
+<p><span>ID: REQ-FUNC-001</span></p>
+</li>
+<li>
+<p><span>Title: Safety-weighted route computation</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall compute a walking route from a user-specified origin to a destination, by calculating a safety weight and attributing a composite safety cost, in addition to distance and time</span></p>
+</li>
+<li>
+<p><span>Rationale: Core product differentiator — existing navigation apps optimise for time or distance, not safety</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Given the same origin and destination, the safe route must differ from the fastest route when the fastest route passes through areas with poor lighting, high crime density, or anomalies</span></p>
+</li>
+<li>
+<p><span>Verification Method: Demonstration</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-002</span></p>
+</li>
+<li>
+<p><span>Title: Safety cost model</span></p>
+</li>
+<li>
+<p><span>Statement: The safety cost shall be computed as a weighted sum of (a) lighting availability, (b) historical crime density, </span><span class="smartypants">©</span><span> anomalies</span></p>
+</li>
+<li>
+<p><span>Rationale: Multi-factor scoring reflects interview findings that safety concerns span crime, lighting, anomalies, and social anxieties</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Modifying any one input factor (e.g. removing lighting data) must observably change the cost assigned to affected segments</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-003</span></p>
+</li>
+<li>
+<p><span>Title: Routing Profile Selection</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall offer predefined routing profiles, allowing users to select a default balanced route or an alternative profile that prioritizes specific safety factors (e.g., environmental lighting or historical data).</span></p>
+</li>
+<li>
+<p><span>Rationale: User safety priorities vary. Predefined profiles allow for route customizations.</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Selecting an alternative profile must calculate and display a route that mathematically prioritizes the chosen factor compared to the default balanced route.</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-004</span></p>
+</li>
+<li>
+<p><span>Title: Comparison with fastest route</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall display alongside the safe route a "fastest route" for reference and report the estimated time difference</span></p>
+</li>
+<li>
+<p><span>Rationale: Users need to make an informed trade-off between safety and travel time</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: The fastest route and its estimated duration must be shown; the time difference must be displayed in a clear format (e.g. "+5 min")</span></p>
+</li>
+<li>
+<p><span>Verification Method: Demonstration</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-005</span></p>
+</li>
+<li>
+<p><span>Title: Crime heatmap layer</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall render a density heatmap of historical crime incidents on the map</span></p>
+</li>
+<li>
+<p><span>Rationale: Crime data provides an objective safety dimension that complements subjective lighting and crowd reports</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: The heatmap must render at the correct geographic locations, toggling the layer on and off must show and hide the overlay</span></p>
+</li>
+<li>
+<p><span>Verification Method: Demonstration</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-006</span></p>
+</li>
+<li>
+<p><span>Title: Safety score breakdown</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall display a breakdown of the computed safety score into sub-scores for lighting, crime, hazards, and crowd reports for the selected route</span></p>
+</li>
+<li>
+<p><span>Rationale: Users want transparency — interview participants explicitly stated they want to know why a route is considered safe or unsafe</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: The breakdown must show category scores and an overall score; scores must be updated when the route is recomputed with different weights</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-007</span></p>
+</li>
+<li>
+<p><span>Title:  transparency</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall display, following calculation of the path, that path's safety score</span></p>
+</li>
+<li>
+<p><span>Rationale: Transparency was a recurring theme across all interviews; users want to understand the reasoning behind route recommendations</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Clicking any route must show a tooltip or info panel</span></p>
+</li>
+<li>
+<p><span>Verification Method: Demonstration</span></p>
+</li>
+<li>
+<p><span>ID: REQ-FUNC-008</span></p>
+</li>
+<li>
+<p><span>Title: Crowd-sourced incident report submission</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall allow any user to submit a safety incident report specifying location, category (e.g. broken streetlight, suspicious activity, physical hazard), description, and timestamp</span></p>
+</li>
+<li>
+<p><span>Rationale: Crowd-sourced data fills gaps not covered by municipal datasets and captures real-time conditions</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: A submitted report must appear on the map within the same session; the report location must be near the user's clicked point</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+</ul><h3 data-id="33-Quality-of-Service" id="33-Quality-of-Service"><a class="anchor hidden-xs" href="#33-Quality-of-Service" title="33-Quality-of-Service"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3 Quality of Service</span></h3><h4 data-id="331-Performance" id="331-Performance"><a class="anchor hidden-xs" href="#331-Performance" title="331-Performance"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3.1 Performance</span></h4><ul>
+<li>
+<p><span>ID: REQ-PERF-001</span></p>
+</li>
+<li>
+<p><span>Title: Route computation latency</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall compute a safe walking route within 10 seconds for any origin-destination pair within the pilot city boundary</span></p>
+</li>
+<li>
+<p><span>Rationale: Users expect interactive response times; longer waits degrade UX</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: 90th percentile route computation time must be ≤10 s</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+<li>
+<p><span>ID: REQ-PERF-002</span></p>
+</li>
+<li>
+<p><span>Title: Map tile loading</span></p>
+</li>
+<li>
+<p><span>Statement: The map interface shall load and render within 10 seconds on a representative device</span></p>
+</li>
+<li>
+<p><span>Rationale: First-impression performance affects user adoption and retention</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Time to display map interface must be &lt;10s on three trials</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test</span></p>
+</li>
+</ul><h4 data-id="332-Security" id="332-Security"><a class="anchor hidden-xs" href="#332-Security" title="332-Security"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3.2 Security</span></h4><ul>
+<li><span>ID: REQ-SEC-001</span></li>
+<li><span>Title: Location data privacy</span></li>
+<li><span>Statement: The system shall not store, transmit, or log the user's device geolocation without explicit affirmative consent per interaction</span></li>
+<li><span>Rationale: Survey data indicates significant privacy concern around location sharing</span></li>
+<li><span>Acceptance Criteria: No location data may be sent to the server unless the user clicks a "Share Location" button; a privacy notice must appear before any location access is requested</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="333-Reliability" id="333-Reliability"><a class="anchor hidden-xs" href="#333-Reliability" title="333-Reliability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3.3 Reliability</span></h4><ul>
+<li><span>ID: REQ-REL-001</span></li>
+<li><span>Title: Graceful degradation on data absence</span></li>
+<li><span>Statement: If lighting data or crime data for a queried route segment is unavailable, the system shall compute the route using the remaining available factors and inform the user that some data is missing</span></li>
+<li><span>Rationale: Incomplete municipal data should not prevent the system from functioning; transparency about data gaps maintains user trust</span></li>
+<li><span>Acceptance Criteria: Removing the crime data file from the server must still produce a route with a warning banner: "Crime data unavailable for some segments"</span></li>
+<li><span>Verification Method: Test</span></li>
+</ul><h4 data-id="334-Availability" id="334-Availability"><a class="anchor hidden-xs" href="#334-Availability" title="334-Availability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3.4 Availability</span></h4><ul>
+<li><span>ID: REQ-AVAIL-001</span></li>
+<li><span>Title: Prototype availability</span></li>
+<li><span>Statement: The prototype shall be available for demonstration during scheduled class sessions and assessment periods</span></li>
+<li><span>Rationale: Course requirement; the system must be demonstrable on demand</span></li>
+<li><span>Acceptance Criteria: The system must load and respond to a route query</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="335-Observability" id="335-Observability"><a class="anchor hidden-xs" href="#335-Observability" title="335-Observability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.3.5 Observability</span></h4><ul>
+<li>
+<p><span>ID: REQ-OBS-001</span></p>
+</li>
+<li>
+<p><span>Title: Error and Crash Logging</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall log all backend processing errors, route calculation failures, including a timestamp and the specific error message.</span></p>
+</li>
+<li>
+<p><span>Rationale: Developers need error logs to troubleshoot and fix bugs when the system breaks.</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Forcing a system error or route failure must generate a log entry containing the time of the failure and the corresponding error details.</span></p>
+</li>
+<li>
+<p><span>Verification Method: Test / Inspection</span></p>
+</li>
+</ul><h3 data-id="34-Compliance" id="34-Compliance"><a class="anchor hidden-xs" href="#34-Compliance" title="34-Compliance"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.4 Compliance</span></h3><ul>
+<li>
+<p><span>ID: REQ-COMP-001</span></p>
+</li>
+<li>
+<p><span>Title: Open-data license attribution</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall display attribution for each municipal dataset used (streetlights, crime), including the data source name, license type, and a link to the original data</span></p>
+</li>
+<li>
+<p><span>Rationale: Required by open-data licenses of the target cities</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: Attribution text must appear in the map UI or an "About" panel; each attribution must link to the original dataset page</span></p>
+</li>
+<li>
+<p><span>Verification Method: Inspection</span></p>
+</li>
+<li>
+<p><span>ID: REQ-COMP-002</span></p>
+</li>
+<li>
+<p><span>Title: Open-source license compliance</span></p>
+</li>
+<li>
+<p><span>Statement: The system shall comply with the licensing terms of all open-source components used by including appropriate notices</span></p>
+</li>
+<li>
+<p><span>Rationale: Legal obligation when redistributing or serving open-source software</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: A "Licenses" page or panel must list each dependency, its license, and a notice</span></p>
+</li>
+<li>
+<p><span>Verification Method: Inspection</span></p>
+</li>
+</ul><h3 data-id="35-Design-and-Implementation" id="35-Design-and-Implementation"><a class="anchor hidden-xs" href="#35-Design-and-Implementation" title="35-Design-and-Implementation"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5 Design and Implementation</span></h3><h4 data-id="351-Installation" id="351-Installation"><a class="anchor hidden-xs" href="#351-Installation" title="351-Installation"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.1 Installation</span></h4><ul>
+<li><span>ID: REQ-INST-001</span></li>
+<li><span>Title: Modular System Deployment</span></li>
+<li><span>Statement: The application components shall be packaged to run as an integrated, self-hosted system.</span></li>
+<li><span>Rationale: Simplifies the demonstration setup and ensures all separate software modules can be launched together reliably.</span></li>
+<li><span>Acceptance Criteria: Executing the system initialization command locally launches all system components simultaneously, rendering the web application accessible via a standard network port.</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="352-Build-and-Delivery" id="352-Build-and-Delivery"><a class="anchor hidden-xs" href="#352-Build-and-Delivery" title="352-Build-and-Delivery"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.2 Build and Delivery</span></h4><ul>
+<li>
+<p><span>ID: REQ-BUILD-001</span></p>
+</li>
+<li>
+<p><span>Title: Build and Deployment Documentation</span></p>
+</li>
+<li>
+<p><span>Statement: The project repository shall include documentation providing step-by-step instructions to configure, build, and run the application manually.</span></p>
+</li>
+<li>
+<p><span>Rationale: Ensures course supervisors and other developers can replicate and assess the system environment without requiring a fully automated build script.</span></p>
+</li>
+<li>
+<p><span>Acceptance Criteria: A user following the provided written instructions from a clean environment must be able to successfully start the system.</span></p>
+</li>
+<li>
+<p><span>Verification Method: Demonstration</span></p>
+</li>
+</ul><h4 data-id="353-Distribution" id="353-Distribution"><a class="anchor hidden-xs" href="#353-Distribution" title="353-Distribution"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.3 Distribution</span></h4><ul>
+<li><span>ID: REQ-DIST-001</span></li>
+<li><span>Title: Single-city deployment</span></li>
+<li><span>Statement: The prototype shall be deployed and tested for exactly one pilot city</span></li>
+<li><span>Rationale: Scope constraint for the prototype phase; multi-city support is deferred</span></li>
+<li><span>Acceptance Criteria: The deployment must contain data for the chosen pilot city only; attempting to route outside the city boundary must show an appropriate message</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="354-Maintainability" id="354-Maintainability"><a class="anchor hidden-xs" href="#354-Maintainability" title="354-Maintainability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.4 Maintainability</span></h4><ul>
+<li><span>ID: REQ-MAINT-001</span></li>
+<li><span>Title: Data refresh procedure</span></li>
+<li><span>Statement: The system shall document a procedure for refreshing municipal data (streetlights, crime)</span></li>
+<li><span>Rationale: Municipal datasets are updated periodically; the system must remain current</span></li>
+<li><span>Acceptance Criteria: Following the documented procedure must produce updated scores and overlays within 30 minutes</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="355-Reusability" id="355-Reusability"><a class="anchor hidden-xs" href="#355-Reusability" title="355-Reusability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.5 Reusability</span></h4><ul>
+<li><span>ID: REQ-REUSE-001</span></li>
+<li><span>Title: City configuration separation</span></li>
+<li><span>Statement: City-specific data (streetlight files, crime files, boundary polygons) shall be stored in a separate configuration directory, not mixed with application code</span></li>
+<li><span>Rationale: Enables future reuse of the application code for additional cities without code changes</span></li>
+<li><span>Acceptance Criteria: Replacing the city configuration directory contents with data for a different city must not require application code modifications</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="356-Portability" id="356-Portability"><a class="anchor hidden-xs" href="#356-Portability" title="356-Portability"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.6 Portability</span></h4><ul>
+<li><span>ID: REQ-PORT-001</span></li>
+<li><span>Title: Local Developer Environment Standardization</span></li>
+<li><span>Statement: The system shall run consistently across development machines.</span></li>
+<li><span>Rationale: Ensures the application runs smoothly during the live project demonstration.</span></li>
+<li><span>Acceptance Criteria: The application can be launched on a team member's local computer</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="357-Cost" id="357-Cost"><a class="anchor hidden-xs" href="#357-Cost" title="357-Cost"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.7 Cost</span></h4><ul>
+<li><span>ID: REQ-COST-001</span></li>
+<li><span>Title: Zero licensing cost</span></li>
+<li><span>Statement: The system shall use only free and open-source software and freely licensed municipal data; no paid API keys or software licenses shall be required for the prototype</span></li>
+<li><span>Rationale: The project has no budget; all dependencies must be zero-cost</span></li>
+<li><span>Acceptance Criteria: A bill of materials listing each dependency and confirming its free/open-source license must be maintained</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="358-Deadline" id="358-Deadline"><a class="anchor hidden-xs" href="#358-Deadline" title="358-Deadline"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.8 Deadline</span></h4><ul>
+<li><span>ID: REQ-DEAD-001</span></li>
+<li><span>Title: Prototype delivery</span></li>
+<li><span>Statement: A working prototype demonstrating functional requirements REQ-FUNC-001 through REQ-FUNC-008 must be delivered by the end of the semester</span></li>
+<li><span>Rationale: Course assessment deadline</span></li>
+<li><span>Acceptance Criteria: The system must be demonstrable and all listed requirements verified</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="359-Proof-of-Concept" id="359-Proof-of-Concept"><a class="anchor hidden-xs" href="#359-Proof-of-Concept" title="359-Proof-of-Concept"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.9 Proof of Concept</span></h4><ul>
+<li><span>ID: REQ-POC-001</span></li>
+<li><span>Title: Routing engine feasibility POC</span></li>
+<li><span>Statement: Before full implementation, a proof of concept must confirm that the chosen routing engine can accept custom edge weights derived from lighting and crime data and produce different routes than the default shortest-path</span></li>
+<li><span>Rationale: Confirms the core technical assumption before investing in full UI and data pipeline</span></li>
+<li><span>Acceptance Criteria: A test script to prove that changing the safety or lighting scores on a street forces the navigation engine to pick a different path between the same origin-destination.</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h4 data-id="3510-Change-Management" id="3510-Change-Management"><a class="anchor hidden-xs" href="#3510-Change-Management" title="3510-Change-Management"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.5.10 Change Management</span></h4><ul>
+<li><span>ID: REQ-CM-001</span></li>
+<li><span>Title: Version-controlled data</span></li>
+<li><span>Statement: All data-processing scripts and configuration files shall be stored on Github</span></li>
+<li><span>Rationale: Enables traceability and rollback of data changes</span></li>
+<li><span>Acceptance Criteria: The Github repository must contain all necessary files; and must show history of data changes</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h3 data-id="36-AIML" id="36-AIML"><a class="anchor hidden-xs" href="#36-AIML" title="36-AIML"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6 AI/ML</span></h3><h4 data-id="361-Model-Specification" id="361-Model-Specification"><a class="anchor hidden-xs" href="#361-Model-Specification" title="361-Model-Specification"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6.1 Model Specification</span></h4><ul>
+<li><span>ID: REQ-ML-001</span></li>
+<li><span>Title: Crime risk prediction model</span></li>
+<li><span>Statement: The system may incorporate a spatio-temporal crime risk prediction model that estimates future crime probability for regions based on historical incident patterns.</span></li>
+<li><span>Rationale: Adds predictive capability beyond retrospective crime heatmaps; research on suitable models (deep reinforcement learning, Bayesian spatio-temporal models)</span></li>
+<li><span>Acceptance Criteria: The system shall report standard evaluation metrics (e.g., accuracy, precision, recall, F1-score, or AUC) on the test dataset.</span></li>
+<li><span>Verification Method: Analysis</span></li>
+</ul><h4 data-id="362-Data-Management" id="362-Data-Management"><a class="anchor hidden-xs" href="#362-Data-Management" title="362-Data-Management"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6.2 Data Management</span></h4><ul>
+<li><span>ID: REQ-ML-003</span></li>
+<li><span>Title: Training data provenance</span></li>
+<li><span>Statement: If a crime prediction model is developed, its training dataset shall be documented</span></li>
+<li><span>Rationale: Reproducibility and auditability of ML-based features</span></li>
+<li><span>Acceptance Criteria: Source attribution must accompany any model delivery</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="363-Guardrails" id="363-Guardrails"><a class="anchor hidden-xs" href="#363-Guardrails" title="363-Guardrails"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6.3 Guardrails</span></h4><p><span>ID: REQ-ML-004</span><br/>
+<span>Title: Prediction abstention</span><br/>
+<span>Statement: The system may optionally use a crime prediction model. If a model is not used, the system shall rely solely on historical crime density.</span><br/>
+<span>Rationale: Allows operation without a prediction model</span><br/>
+<span>Acceptance Criteria: N/A (conditional on model use)</span><br/>
+<span>Verification Method: Test</span></p><h4 data-id="364-Ethics" id="364-Ethics"><a class="anchor hidden-xs" href="#364-Ethics" title="364-Ethics"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6.4 Ethics</span></h4><ul>
+<li><span>ID: REQ-ML-005</span></li>
+<li><span>Title: Model card documentation</span></li>
+<li><span>Statement: If a crime prediction model is developed, a form of documentation shall be produced documenting intended use, performance metrics across geographic areas, known limitations, and fairness evaluation</span></li>
+<li><span>Rationale: Transparency and accountability for ML components</span></li>
+<li><span>Acceptance Criteria: N/A (deferred with model)</span></li>
+<li><span>Verification Method: Inspection</span></li>
+</ul><h4 data-id="365-Human-in-the-Loop" id="365-Human-in-the-Loop"><a class="anchor hidden-xs" href="#365-Human-in-the-Loop" title="365-Human-in-the-Loop"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>3.6.5 Human-in-the-Loop</span></h4><ul>
+<li><span>ID: REQ-ML-006</span></li>
+<li><span>Title: Route override disclosure</span></li>
+<li><span>Statement: Any route that differs substantially from the user's expected path due to predictive model outputs (not historical data) shall be flagged to the user with an explanation</span></li>
+<li><span>Rationale: Users value transparency; they should know when predictions rather than recorded data are driving recommendations</span></li>
+<li><span>Acceptance Criteria: N/A (deferred with model)</span></li>
+<li><span>Verification Method: Demonstration</span></li>
+</ul><h2 data-id="4-Verification" id="4-Verification"><a class="anchor hidden-xs" href="#4-Verification" title="4-Verification"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>4. Verification</span></h2><table>
+<thead>
+<tr>
+<th><span>Requirement ID</span></th>
+<th><span>Verification Method</span></th>
+<th><span>Test/Artifact Link</span></th>
+<th><span>Status</span></th>
+<th><span>Evidence</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>REQ-INT-UI-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-002</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-003</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-004</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-005</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-006</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-007</span></td>
+<td><span>Demonstration</span></td>
+<td><span>prototype UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-008</span></td>
+<td><span>Test</span></td>
+<td><span>Responsive design test suite</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-UI-009</span></td>
+<td><span>Inspection</span></td>
+<td><span>Code review / privacy notice in UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-HW-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Cross-device manual check</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-HW-002</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Touch and mouse input test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-HW-003</span></td>
+<td><span>Inspection</span></td>
+<td><span>Hardware requirements doc</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>POC script confirming custom weight acceptance (REQ-POC-001)</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-002</span></td>
+<td><span>Inspection</span></td>
+<td><span>Data pipeline configuration</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-003</span></td>
+<td><span>Inspection</span></td>
+<td><span>Data pipeline configuration</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-004</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Map rendering in UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INT-SW-005</span></td>
+<td><span>Inspection</span></td>
+<td><span>API surface audit</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Route comparison: safe vs fastest</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-002</span></td>
+<td><span>Test</span></td>
+<td><span>Unit test for safety cost function</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-003</span></td>
+<td><span>Test</span></td>
+<td><span>Profile selection integration test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-004</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Side-by-side route display</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-005</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Heatmap toggle in UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-006</span></td>
+<td><span>Test</span></td>
+<td><span>Score breakdown unit test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-007</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Tooltip/info panel on route click</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-FUNC-008</span></td>
+<td><span>Test</span></td>
+<td><span>Report submission + map display integration test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-PERF-001</span></td>
+<td><span>Test</span></td>
+<td><span>Route computation timing benchmark</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-PERF-002</span></td>
+<td><span>Test</span></td>
+<td><span>Map load performance test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-SEC-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>Privacy consent flow audit</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-REL-001</span></td>
+<td><span>Test</span></td>
+<td><span>Data-absence integration test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-AVAIL-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Class-session demo readiness</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-OBS-001</span></td>
+<td><span>Test / Inspection</span></td>
+<td><span>Error log generation test</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-COMP-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>Attribution panel in UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-COMP-002</span></td>
+<td><span>Inspection</span></td>
+<td><span>Licenses page/dialog</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-INST-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Single-command startup</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-BUILD-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Clean-environment setup walkthrough</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-DIST-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>City data boundary check</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-MAINT-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Data refresh procedure walkthrough</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-REUSE-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>Directory structure audit</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-PORT-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Launch on team member machine</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-COST-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>Bill of materials review</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-DEAD-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>End-of-semester demo</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-POC-001</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Custom-weight routing POC script</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-CM-001</span></td>
+<td><span>Inspection</span></td>
+<td><span>GitHub history audit</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-ML-001</span></td>
+<td><span>Analysis</span></td>
+<td><span>Model evaluation report</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-ML-003</span></td>
+<td><span>Inspection</span></td>
+<td><span>Training data provenance doc</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-ML-004</span></td>
+<td><span>Test</span></td>
+<td><span>Conditional test (if model used)</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-ML-005</span></td>
+<td><span>Inspection</span></td>
+<td><span>Model card</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span>REQ-ML-006</span></td>
+<td><span>Demonstration</span></td>
+<td><span>Override disclosure in UI</span></td>
+<td><span>Planned</span></td>
+<td></td>
+</tr>
+</tbody>
+</table><h2 data-id="5-Appendixes" id="5-Appendixes"><a class="anchor hidden-xs" href="#5-Appendixes" title="5-Appendixes"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>5. Appendixes</span></h2><h3 data-id="A-Glossary" id="A-Glossary"><a class="anchor hidden-xs" href="#A-Glossary" title="A-Glossary"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>A. Glossary</span></h3><table>
+<thead>
+<tr>
+<th><span>Term</span></th>
+<th><span>Definition</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>A*</span></td>
+<td><span>Graph traversal pathfinding algorithm used to compute the lowest-cost (safest) route across the street network</span></td>
+</tr>
+<tr>
+<td><span>Composite safety cost</span></td>
+<td><span>Weighted sum of lighting, crime, hazard, and crowd-report sub-costs assigned to each street segment</span></td>
+</tr>
+<tr>
+<td><span>Crime density</span></td>
+<td><span>Number of reported crime incidents per unit area, optionally kernel-density estimated for heatmap rendering</span></td>
+</tr>
+<tr>
+<td><span>Crowd report</span></td>
+<td><span>User-submitted observation of a safety-relevant condition at a specific location</span></td>
+</tr>
+<tr>
+<td><span>Edge weight</span></td>
+<td><span>Numerical cost assigned to a graph edge (street segment) used by the routing engine to determine optimal path</span></td>
+</tr>
+<tr>
+<td><span>GeoJSON</span></td>
+<td><span>Open standard geospatial data interchange format based on JSON, used for storing streetlight and crime data</span></td>
+</tr>
+<tr>
+<td><span>KDE</span></td>
+<td><span>Kernel Density Estimation — non-parametric technique to estimate probability density of crime incidents across space</span></td>
+</tr>
+<tr>
+<td><span>Lighting score</span></td>
+<td><span>Sub-score based on proximity density of streetlights along a segment</span></td>
+</tr>
+<tr>
+<td><span>Polyline</span></td>
+<td><span>Sequence of connected line segments representing a computed walking route on the map</span></td>
+</tr>
+<tr>
+<td><span>Proof of Concept (POC)</span></td>
+<td><span>Preliminary implementation confirming core technical feasibility before full development</span></td>
+</tr>
+<tr>
+<td><span>Risk profile</span></td>
+<td><span>Predefined routing mode (e.g., balanced, lighting-priority, crime-avoidance) selectable by the user</span></td>
+</tr>
+<tr>
+<td><span>Safety score</span></td>
+<td><span>Composite metric (0–100) for a route segment combining lighting, crime, hazard, and crowd-report sub-scores</span></td>
+</tr>
+<tr>
+<td><span>Segment</span></td>
+<td><span>A contiguous portion of a walking path between two junctions in the routing graph</span></td>
+</tr>
+<tr>
+<td><span>Temporal decay</span></td>
+<td><span>Mathematical function reducing the weight of older crime data points over time in safety cost calculations</span></td>
+</tr>
+</tbody>
+</table><h3 data-id="B-Interview-Themes-Cross-Reference" id="B-Interview-Themes-Cross-Reference"><a class="anchor hidden-xs" href="#B-Interview-Themes-Cross-Reference" title="B-Interview-Themes-Cross-Reference"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>B. Interview Themes Cross-Reference</span></h3><table>
+<thead>
+<tr>
+<th><span>Theme</span></th>
+<th><span>Evidence Source</span></th>
+<th><span>Related Requirements</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>Poor lighting is dominant safety concern</span></td>
+<td><span>Six interviews (Weeks 4–5)</span></td>
+<td><span>REQ-FUNC-001, REQ-FUNC-005, REQ-FUNC-007</span></td>
+</tr>
+<tr>
+<td><span>Users value transparency in route evaluation</span></td>
+<td><span>Six interviews (Weeks 4–5): participants expressed desire to understand why a route is "safe" or "unsafe"</span></td>
+<td><span>REQ-FUNC-006, REQ-FUNC-007</span></td>
+</tr>
+<tr>
+<td><span>Privacy concerns around location sharing</span></td>
+<td><span>Majority of survey respondents; interview participants hesitant</span></td>
+<td><span>REQ-SEC-001, REQ-INT-UI-009</span></td>
+</tr>
+<tr>
+<td><span>Physical hazards as important as crime</span></td>
+<td><span>Six interviews (Weeks 4–5): potholes, puddles, uneven surfaces, stray dogs, mosquitos near rivers</span></td>
+<td><span>REQ-FUNC-002 (hazard component)</span></td>
+</tr>
+<tr>
+<td><span>Risk tolerance varies individually</span></td>
+<td><span>Cross-analysis — Interview_1 (assault-prevention focus), Interview_2 (theft + environmental), Interview_3 (no crime concern, only environmental anxiety)</span></td>
+<td><span>REQ-FUNC-003 (routing profiles)</span></td>
+</tr>
+<tr>
+<td><span>Poor UX / nagging prompts leads to uninstall</span></td>
+<td><span>Survey respondents, Interview_2 explicitly rejected gamification and paid subscriptions</span></td>
+<td><span>REQ-INT-UI-001 through REQ-INT-UI-008</span></td>
+</tr>
+<tr>
+<td><span>Pre-trip planning only, not during journey</span></td>
+<td><span>Six interview participants</span></td>
+<td><span>REQ-INT-UI-009 (no real-time tracking)</span></td>
+</tr>
+<tr>
+<td><span>Route familiarity builds trust</span></td>
+<td><span>Interviews 1-3, participants prefer own knowledge in familiar areas, only follow app suggestions in unfamiliar locations</span></td>
+<td><span>REQ-FUNC-003, REQ-FUNC-007</span></td>
+</tr>
+<tr>
+<td><span>Social anxieties extend beyond crime</span></td>
+<td><span>Interviews 2-3, dangerous drivers/cyclists (ojisan cyclists), inebriated individuals, loitering teenagers, unsolicited street marketers</span></td>
+<td><span>REQ-FUNC-002 (expanded hazard scope)</span></td>
+</tr>
+<tr>
+<td><span>Interest in contributing crowd-sourced reports</span></td>
+<td><span>Interviews 1-3, open to submitting safety reports but with location-privacy safeguards</span></td>
+<td><span>REQ-FUNC-008</span></td>
+</tr>
+<tr>
+<td><span>Varying definitions of safety</span></td>
+<td><span>Across all participants — some fear assault, some theft, some environmental hazards only; no single definition applies</span></td>
+<td><span>REQ-FUNC-003 (profile customization)</span></td>
+</tr>
+</tbody>
+</table><h3 data-id="C-Survey-Results-Summary" id="C-Survey-Results-Summary"><a class="anchor hidden-xs" href="#C-Survey-Results-Summary" title="C-Survey-Results-Summary"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>C. Survey Results Summary</span></h3><h4 data-id="C1-Methodology" id="C1-Methodology"><a class="anchor hidden-xs" href="#C1-Methodology" title="C1-Methodology"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>C.1 Methodology</span></h4><ul>
+<li><strong><span>Target population</span></strong><span>: University students and young professionals who frequently walk at night</span></li>
+<li><strong><span>Distribution</span></strong><span>: Online survey link distributed via social media</span></li>
+<li><strong><span>Initial version</span></strong><span>: 67 responses collected; feedback from non-native English speakers indicated vocabulary difficulty (e.g., "loitering")</span></li>
+<li><strong><span>Revised version</span></strong><span>: Deployed with simplified language; responses pending at time of writing</span></li>
+<li><strong><span>Question structure</span></strong><span>: Likert scales with "other" options, open-ended free-text sections, designed to avoid leading bias</span></li>
+</ul><h4 data-id="C2-Key-Quantitative-Findings" id="C2-Key-Quantitative-Findings"><a class="anchor hidden-xs" href="#C2-Key-Quantitative-Findings" title="C2-Key-Quantitative-Findings"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>C.2 Key Quantitative Findings</span></h4><table>
+<thead>
+<tr>
+<th><span>Topic</span></th>
+<th><span>Finding</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>Dominant concerns</span></td>
+<td><span>Poor lighting, empty streets, known high-crime areas</span></td>
+</tr>
+<tr>
+<td><span>Desired features</span></td>
+<td><span>Real-time safety alerts, well-lit path prioritisation, crime heatmap overlays</span></td>
+</tr>
+<tr>
+<td><span>Location privacy</span></td>
+<td><span>Majority uncomfortable with real-time location sharing</span></td>
+</tr>
+<tr>
+<td><span>Willingness to trade distance</span></td>
+<td><span>Most respondents open to taking longer routes for perceived safety</span></td>
+</tr>
+</tbody>
+</table><h4 data-id="C3-Notable-Free-Text-Themes" id="C3-Notable-Free-Text-Themes"><a class="anchor hidden-xs" href="#C3-Notable-Free-Text-Themes" title="C3-Notable-Free-Text-Themes"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>C.3 Notable Free-Text Themes</span></h4><ul>
+<li><span>Safety concerns beyond crime: ice on footpaths, summer heat, stray animals</span></li>
+<li><span>Desire for transparency in how safety scores are calculated</span></li>
+<li><span>Users find persistent notification/nagging prompts a reason to uninstall</span></li>
+</ul><h4 data-id="C4-Limitations" id="C4-Limitations"><a class="anchor hidden-xs" href="#C4-Limitations" title="C4-Limitations"><span class="octicon octicon-link ph ph-link-simple-horizontal"></span></a><span>C.4 Limitations</span></h4><ul>
+<li><span>Sample skewed toward university-age demographics and/or social media users</span></li>
+<li><span>Initial version vocabulary may have excluded some non-native English speakers</span></li>
+<li><span>Revised version data collection still in progress</span></li>
+</ul></div>
+</div>
+</body>
+</html>
