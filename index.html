@@ -608,6 +608,7 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
+            scroll-margin-top: 140px; /* Offset for sticky main header and sticky SRS sub-nav */
         }
 
         .srs-content h1 {
@@ -1217,40 +1218,30 @@
                 </div>
 
                 <div class="srs-nav-sticky">
-                    <a href="#1-Introduction"
-                        onclick="(e) => { e.preventDefault(); document.getElementById('1-Introduction').scrollIntoView({behavior: 'smooth'}) }">1.
-                        Introduction</a>
-                    <a href="#2-Product-Overview"
-                        onclick="(e) => { e.preventDefault(); document.getElementById('2-Product-Overview').scrollIntoView({behavior: 'smooth'}) }">2.
-                        Product Overview</a>
-                    <a href="#3-Requirements"
-                        onclick="(e) => { e.preventDefault(); document.getElementById('3-Requirements').scrollIntoView({behavior: 'smooth'}) }">3.
-                        Requirements</a>
-                    <a href="#4-Verification"
-                        onclick="(e) => { e.preventDefault(); document.getElementById('4-Verification').scrollIntoView({behavior: 'smooth'}) }">4.
-                        Verification</a>
-                    <a href="#5-Appendixes"
-                        onclick="(e) => { e.preventDefault(); document.getElementById('5-Appendixes').scrollIntoView({behavior: 'smooth'}) }">5.
-                        Appendixes</a>
+                    <a href="#1-introduction">1. Introduction</a>
+                    <a href="#2-product-overview">2. Product Overview</a>
+                    <a href="#3-requirements">3. Requirements</a>
+                    <a href="#4-verification">4. Verification</a>
+                    <a href="#5-appendixes">5. Appendixes</a>
                 </div>
 
                 <div class="srs-content">
 
                     <div>
                         <div data-hard-breaks="true" id="doc" lang="en-US">
-                            <h1 data-id="Software-Requirements-Specification" id="Software-Requirements-Specification">
-                                <a href="#Software-Requirements-Specification"
-                                    title="Software-Requirements-Specification"><span></span></a><span>Software
+                            <h1 data-id="software-requirements-specification" id="software-requirements-specification">
+                                <a href="#software-requirements-specification"
+                                    title="software-requirements-specification"><span></span></a><span>Software
                                     Requirements Specification</span>
                             </h1>
-                            <h2 data-id="For-SafePath" id="For-SafePath"><a href="#For-SafePath"
-                                    title="For-SafePath"><span></span></a><span>For SafePath</span></h2>
+                            <h2 data-id="for-safepath" id="for-safepath"><a href="#for-safepath"
+                                    title="for-safepath"><span></span></a><span>For SafePath</span></h2>
                             <p><span>Version 0.1</span><br />
                                 <span>Prepared by Group H</span><br />
                                 <span>May 20, 2026</span>
                             </p>
-                            <h2 data-id="Table-of-Contents" id="Table-of-Contents"><a href="#Table-of-Contents"
-                                    title="Table-of-Contents"><span></span></a><span>Table of Contents</span></h2>
+                            <h2 data-id="table-of-contents" id="table-of-contents"><a href="#table-of-contents"
+                                    title="table-of-contents"><span></span></a><span>Table of Contents</span></h2>
                             <ul>
                                 <li><a href="#1-introduction"><span>1. Introduction</span></a>
                                     <ul>
@@ -1293,8 +1284,8 @@
                                 <li><a href="#4-verification"><span>4. Verification</span></a></li>
                                 <li><a href="#5-appendixes"><span>5. Appendixes</span></a></li>
                             </ul>
-                            <h2 data-id="Revision-History" id="Revision-History"><a href="#Revision-History"
-                                    title="Revision-History"><span></span></a><span>Revision History</span></h2>
+                            <h2 data-id="revision-history" id="revision-history"><a href="#revision-history"
+                                    title="revision-history"><span></span></a><span>Revision History</span></h2>
                             <table>
                                 <thead>
                                     <tr>
@@ -1319,16 +1310,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h2 data-id="1-Introduction" id="1-Introduction"><a href="#1-Introduction"
-                                    title="1-Introduction"><span></span></a><span>1. Introduction</span></h2>
+                            <h2 data-id="1-introduction" id="1-introduction"><a href="#1-introduction"
+                                    title="1-introduction"><span></span></a><span>1. Introduction</span></h2>
                             <p><span>This Software Requirements Specification (SRS) defines the requirements for the
                                     safe walking route application developed for the PBL3 Creative Design project. It
                                     outlines the product scope, target audiences, and the specific functional and
                                     non-functional requirements necessary to implement the route comparison system.
                                     Details regarding specific constraints and models are referenced in their respective
                                     sections below.</span></p>
-                            <h3 data-id="11-Document-Purpose" id="11-Document-Purpose"><a href="#11-Document-Purpose"
-                                    title="11-Document-Purpose"><span></span></a><span>1.1 Document Purpose</span></h3>
+                            <h3 data-id="11-document-purpose" id="11-document-purpose"><a href="#11-document-purpose"
+                                    title="11-document-purpose"><span></span></a><span>1.1 Document Purpose</span></h3>
                             <p><span>This Software Requirements Specification (SRS) aims at defining the functional and
                                     non-functional requirements of the SafePath system, a pedestrian navigation platform
                                     that emphasises personal safety during route generation. This document describes
@@ -1341,8 +1332,8 @@
                                     software development lifecycle. It can also be used in conjunction with related
                                     documents such as project proposal, system architecture design and development
                                     roadmap.</span></p>
-                            <h3 data-id="12-Product-Scope" id="12-Product-Scope"><a href="#12-Product-Scope"
-                                    title="12-Product-Scope"><span></span></a><span>1.2 Product Scope</span></h3>
+                            <h3 data-id="12-product-scope" id="12-product-scope"><a href="#12-product-scope"
+                                    title="12-product-scope"><span></span></a><span>1.2 Product Scope</span></h3>
                             <p><span>SafePath (Version 0.1) is a web-based route-planning application that generates
                                     walking directions optimised for safety rather than travel time. It consumes
                                     streetlight location data, crime incident records, and user-contributed safety
@@ -1356,10 +1347,10 @@
                                     engine, and data ingestion pipeline. Excluded are native mobile applications,
                                     real-time location tracking, and city-maintenance integration, which are deferred to
                                     future releases.</span></p>
-                            <h3 data-id="13-Definitions-Acronyms-and-Abbreviations"
-                                id="13-Definitions-Acronyms-and-Abbreviations"><a
-                                    href="#13-Definitions-Acronyms-and-Abbreviations"
-                                    title="13-Definitions-Acronyms-and-Abbreviations"><span></span></a><span>1.3
+                            <h3 data-id="13-definitions-acronyms-and-abbreviations"
+                                id="13-definitions-acronyms-and-abbreviations"><a
+                                    href="#13-definitions-acronyms-and-abbreviations"
+                                    title="13-definitions-acronyms-and-abbreviations"><span></span></a><span>1.3
                                     Definitions, Acronyms, and Abbreviations</span></h3>
                             <p><span>To ensure consistent interpretation among technical developers and non-technical
                                     stakeholders, the following glossary defines specialized engineering, geospatial,
@@ -1445,8 +1436,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h3 data-id="14-References" id="14-References"><a href="#14-References"
-                                    title="14-References"><span></span></a><span>1.4 References</span></h3>
+                            <h3 data-id="14-references" id="14-references"><a href="#14-references"
+                                    title="14-references"><span></span></a><span>1.4 References</span></h3>
                             <table>
                                 <thead>
                                     <tr>
@@ -1579,8 +1570,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h3 data-id="15-Document-Overview" id="15-Document-Overview"><a href="#15-Document-Overview"
-                                    title="15-Document-Overview"><span></span></a><span>1.5 Document Overview</span>
+                            <h3 data-id="15-document-overview" id="15-document-overview"><a href="#15-document-overview"
+                                    title="15-document-overview"><span></span></a><span>1.5 Document Overview</span>
                             </h3>
                             <p><span>This document is organized systematically into five primary chapters to guide
                                     stakeholders through the engineering lifecycle of SafePath:</span></p>
@@ -1611,9 +1602,9 @@
                             </ul>
                             <p><span>Document updates, scope alterations are cataloged in the Revision History located
                                     at the top of this document.</span></p>
-                            <h3 data-id="16-Risks-and-Assumptions" id="16-Risks-and-Assumptions"><a
-                                    href="#16-Risks-and-Assumptions"
-                                    title="16-Risks-and-Assumptions"><span></span></a><span>1.6 Risks and
+                            <h3 data-id="16-risks-and-assumptions" id="16-risks-and-assumptions"><a
+                                    href="#16-risks-and-assumptions"
+                                    title="16-risks-and-assumptions"><span></span></a><span>1.6 Risks and
                                     Assumptions</span></h3>
                             <p><span>The feasibility of SafePath relies on the mitigation of the following known project
                                     assumptions and computational risks:</span></p>
@@ -1648,11 +1639,11 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <h2 data-id="2-Product-Overview" id="2-Product-Overview"><a href="#2-Product-Overview"
-                                    title="2-Product-Overview"><span></span></a><span>2. Product Overview</span></h2>
-                            <h3 data-id="21-Product-Perspective" id="21-Product-Perspective"><a
-                                    href="#21-Product-Perspective"
-                                    title="21-Product-Perspective"><span></span></a><span>2.1 Product Perspective</span>
+                            <h2 data-id="2-product-overview" id="2-product-overview"><a href="#2-product-overview"
+                                    title="2-product-overview"><span></span></a><span>2. Product Overview</span></h2>
+                            <h3 data-id="21-product-perspective" id="21-product-perspective"><a
+                                    href="#21-product-perspective"
+                                    title="21-product-perspective"><span></span></a><span>2.1 Product Perspective</span>
                             </h3>
                             <p><span>SafePath is a new product developed as part of a university project (PBL 3,
                                     Semester 3) by Group H. It does not replace an existing system but addresses a gap
@@ -1661,8 +1652,8 @@
                                     environmental hazards. The system depends on publicly available municipal open-data
                                     portals for streetlight and crime-incident data, and on open-source routing engines
                                     (GraphHopper or openrouteservice) for path computation.</span></p>
-                            <h3 data-id="22-Product-Functions" id="22-Product-Functions"><a href="#22-Product-Functions"
-                                    title="22-Product-Functions"><span></span></a><span>2.2 Product Functions</span>
+                            <h3 data-id="22-product-functions" id="22-product-functions"><a href="#22-product-functions"
+                                    title="22-product-functions"><span></span></a><span>2.2 Product Functions</span>
                             </h3>
                             <p><span>The main purpose of the app is to find and offer safer alternative routes. It
                                     builds a street-by-street safe path using maps, crime stats, and live user
@@ -1709,9 +1700,9 @@
                                         data).</span></li>
                             </ul>
                             <hr />
-                            <h3 data-id="23-Product-Constraints" id="23-Product-Constraints"><a
-                                    href="#23-Product-Constraints"
-                                    title="23-Product-Constraints"><span></span></a><span>2.3 Product Constraints</span>
+                            <h3 data-id="23-product-constraints" id="23-product-constraints"><a
+                                    href="#23-product-constraints"
+                                    title="23-product-constraints"><span></span></a><span>2.3 Product Constraints</span>
                             </h3>
                             <ul>
                                 <li><span>The system shall use open-source routing software for path computation to
@@ -1728,9 +1719,9 @@
                                 <li><span>AI/ML components (if any) must be limited to crime risk prediction using
                                         publicly available datasets</span></li>
                             </ul>
-                            <h3 data-id="24-User-Characteristics" id="24-User-Characteristics"><a
-                                    href="#24-User-Characteristics"
-                                    title="24-User-Characteristics"><span></span></a><span>2.4 User
+                            <h3 data-id="24-user-characteristics" id="24-user-characteristics"><a
+                                    href="#24-user-characteristics"
+                                    title="24-user-characteristics"><span></span></a><span>2.4 User
                                     Characteristics</span></h3>
                             <p><span>The SafePath system is built for multiple user classes with different goals, access
                                     levels and interaction patterns.</span></p>
@@ -1765,9 +1756,9 @@
                                     clear navigation, colour contrast, and easy-to-follow interaction flows. Future
                                     versions of the system could have multilingual support and localisation capabilities
                                     to cater to the needs of a diverse urban population.</span></p>
-                            <h3 data-id="25-Assumptions-and-Dependencies" id="25-Assumptions-and-Dependencies"><a
-                                    href="#25-Assumptions-and-Dependencies"
-                                    title="25-Assumptions-and-Dependencies"><span></span></a><span>2.5 Assumptions and
+                            <h3 data-id="25-assumptions-and-dependencies" id="25-assumptions-and-dependencies"><a
+                                    href="#25-assumptions-and-dependencies"
+                                    title="25-assumptions-and-dependencies"><span></span></a><span>2.5 Assumptions and
                                     Dependencies</span></h3>
                             <ul>
                                 <li><strong><span>Assumptions</span></strong><span>: (1) the selected pilot city
@@ -1786,16 +1777,16 @@
                                         require developing an in-house routing engine, substantially increasing
                                         scope</span></li>
                             </ul>
-                            <h3 data-id="26-Apportioning-of-Requirements" id="26-Apportioning-of-Requirements"><a
-                                    href="#26-Apportioning-of-Requirements"
-                                    title="26-Apportioning-of-Requirements"><span></span></a><span>2.6 Apportioning of
+                            <h3 data-id="26-apportioning-of-requirements" id="26-apportioning-of-requirements"><a
+                                    href="#26-apportioning-of-requirements"
+                                    title="26-apportioning-of-requirements"><span></span></a><span>2.6 Apportioning of
                                     Requirements</span></h3>
                             <p><span>Requirements are allocated across three primary subsystems and two release
                                     increments. The prototype (v0.1) targets the pilot-city demonstration deadline;
                                     deferred features are tracked for post-prototype releases.</span></p>
-                            <h4 data-id="261-Subsystem-Allocation" id="261-Subsystem-Allocation"><a
-                                    href="#261-Subsystem-Allocation"
-                                    title="261-Subsystem-Allocation"><span></span></a><span>2.6.1 Subsystem
+                            <h4 data-id="261-subsystem-allocation" id="261-subsystem-allocation"><a
+                                    href="#261-subsystem-allocation"
+                                    title="261-subsystem-allocation"><span></span></a><span>2.6.1 Subsystem
                                     Allocation</span></h4>
                             <table>
                                 <thead>
@@ -1977,8 +1968,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h4 data-id="262-Release-Roadmap" id="262-Release-Roadmap"><a href="#262-Release-Roadmap"
-                                    title="262-Release-Roadmap"><span></span></a><span>2.6.2 Release Roadmap</span></h4>
+                            <h4 data-id="262-release-roadmap" id="262-release-roadmap"><a href="#262-release-roadmap"
+                                    title="262-release-roadmap"><span></span></a><span>2.6.2 Release Roadmap</span></h4>
                             <table>
                                 <thead>
                                     <tr>
@@ -2006,10 +1997,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h4 data-id="263-Unknown-or-Unconfirmed-Allocations"
-                                id="263-Unknown-or-Unconfirmed-Allocations"><a
-                                    href="#263-Unknown-or-Unconfirmed-Allocations"
-                                    title="263-Unknown-or-Unconfirmed-Allocations"><span></span></a><span>2.6.3 Unknown
+                            <h4 data-id="263-unknown-or-unconfirmed-allocations"
+                                id="263-unknown-or-unconfirmed-allocations"><a
+                                    href="#263-unknown-or-unconfirmed-allocations"
+                                    title="263-unknown-or-unconfirmed-allocations"><span></span></a><span>2.6.3 Unknown
                                     or Unconfirmed Allocations</span></h4>
                             <ul>
                                 <li><strong><span>Real-time tracking and turn-by-turn navigation</span></strong><span>:
@@ -2022,11 +2013,11 @@
                                         Deferred; requires stakeholder engagement beyond current project scope.</span>
                                 </li>
                             </ul>
-                            <h2 data-id="3-Requirements" id="3-Requirements"><a href="#3-Requirements"
-                                    title="3-Requirements"><span></span></a><span>3. Requirements</span></h2>
-                            <h3 data-id="31-External-Interfaces" id="31-External-Interfaces"><a
-                                    href="#31-External-Interfaces"
-                                    title="31-External-Interfaces"><span></span></a><span>3.1 External Interfaces</span>
+                            <h2 data-id="3-requirements" id="3-requirements"><a href="#3-requirements"
+                                    title="3-requirements"><span></span></a><span>3. Requirements</span></h2>
+                            <h3 data-id="31-external-interfaces" id="31-external-interfaces"><a
+                                    href="#31-external-interfaces"
+                                    title="31-external-interfaces"><span></span></a><span>3.1 External Interfaces</span>
                             </h3>
                             <p><span>This section describes the external interfaces used by the SafePath system in
                                     support of navigation, geospatial analysis, crime data integration and community
@@ -2034,8 +2025,8 @@
                                     services, datasets, users and third party platforms. The interfaces defined in this
                                     document are the input/output specifications required for system implementation,
                                     integration, and testing throughout the software development lifecycle.</span></p>
-                            <h4 data-id="311-User-Interfaces" id="311-User-Interfaces"><a href="#311-User-Interfaces"
-                                    title="311-User-Interfaces"><span></span></a><span>3.1.1 User Interfaces</span></h4>
+                            <h4 data-id="311-user-interfaces" id="311-user-interfaces"><a href="#311-user-interfaces"
+                                    title="311-user-interfaces"><span></span></a><span>3.1.1 User Interfaces</span></h4>
                             <ul>
                                 <li><span>REQ-INT-UI-001: The system shall provide a web-based map interface with a
                                         start-point input, destination input, and a "Find Safe Route" button</span></li>
@@ -2061,9 +2052,9 @@
                                 <li><span>REQ-INT-UI-009: The system shall prompt for location access but not send
                                         location data without explicit user action</span></li>
                             </ul>
-                            <h4 data-id="312-Hardware-Interfaces" id="312-Hardware-Interfaces"><a
-                                    href="#312-Hardware-Interfaces"
-                                    title="312-Hardware-Interfaces"><span></span></a><span>3.1.2 Hardware
+                            <h4 data-id="312-hardware-interfaces" id="312-hardware-interfaces"><a
+                                    href="#312-hardware-interfaces"
+                                    title="312-hardware-interfaces"><span></span></a><span>3.1.2 Hardware
                                     Interfaces</span></h4>
                             <ul>
                                 <li><span>REQ-INT-HW-001: The system shall operate on any device capable of running a
@@ -2073,9 +2064,9 @@
                                 <li><span>REQ-INT-HW-003: The system shall not require any specialised hardware
                                         peripherals</span></li>
                             </ul>
-                            <h4 data-id="313-Software-Interfaces" id="313-Software-Interfaces"><a
-                                    href="#313-Software-Interfaces"
-                                    title="313-Software-Interfaces"><span></span></a><span>3.1.3 Software
+                            <h4 data-id="313-software-interfaces" id="313-software-interfaces"><a
+                                    href="#313-software-interfaces"
+                                    title="313-software-interfaces"><span></span></a><span>3.1.3 Software
                                     Interfaces</span></h4>
                             <ul>
                                 <li><span>REQ-INT-SW-001: The system shall use an open source API for route computation,
@@ -2090,8 +2081,8 @@
                                 <li><span>REQ-INT-SW-005: The system shall expose no public API in the prototype
                                         release</span></li>
                             </ul>
-                            <h3 data-id="32-Functional" id="32-Functional"><a href="#32-Functional"
-                                    title="32-Functional"><span></span></a><span>3.2 Functional</span></h3>
+                            <h3 data-id="32-functional" id="32-functional"><a href="#32-functional"
+                                    title="32-functional"><span></span></a><span>3.2 Functional</span></h3>
                             <ul>
                                 <li>
                                     <p><span>ID: REQ-FUNC-001</span></p>
@@ -2275,12 +2266,12 @@
                                     <p><span>Verification Method: Test</span></p>
                                 </li>
                             </ul>
-                            <h3 data-id="33-Quality-of-Service" id="33-Quality-of-Service"><a
-                                    href="#33-Quality-of-Service"
-                                    title="33-Quality-of-Service"><span></span></a><span>3.3 Quality of Service</span>
+                            <h3 data-id="33-quality-of-service" id="33-quality-of-service"><a
+                                    href="#33-quality-of-service"
+                                    title="33-quality-of-service"><span></span></a><span>3.3 Quality of Service</span>
                             </h3>
-                            <h4 data-id="331-Performance" id="331-Performance"><a href="#331-Performance"
-                                    title="331-Performance"><span></span></a><span>3.3.1 Performance</span></h4>
+                            <h4 data-id="331-performance" id="331-performance"><a href="#331-performance"
+                                    title="331-performance"><span></span></a><span>3.3.1 Performance</span></h4>
                             <ul>
                                 <li>
                                     <p><span>ID: REQ-PERF-001</span></p>
@@ -2325,8 +2316,8 @@
                                     <p><span>Verification Method: Test</span></p>
                                 </li>
                             </ul>
-                            <h4 data-id="332-Security" id="332-Security"><a href="#332-Security"
-                                    title="332-Security"><span></span></a><span>3.3.2 Security</span></h4>
+                            <h4 data-id="332-security" id="332-security"><a href="#332-security"
+                                    title="332-security"><span></span></a><span>3.3.2 Security</span></h4>
                             <ul>
                                 <li><span>ID: REQ-SEC-001</span></li>
                                 <li><span>Title: Location data privacy</span></li>
@@ -2339,8 +2330,8 @@
                                         location access is requested</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="333-Reliability" id="333-Reliability"><a href="#333-Reliability"
-                                    title="333-Reliability"><span></span></a><span>3.3.3 Reliability</span></h4>
+                            <h4 data-id="333-reliability" id="333-reliability"><a href="#333-reliability"
+                                    title="333-reliability"><span></span></a><span>3.3.3 Reliability</span></h4>
                             <ul>
                                 <li><span>ID: REQ-REL-001</span></li>
                                 <li><span>Title: Graceful degradation on data absence</span></li>
@@ -2354,8 +2345,8 @@
                                         segments"</span></li>
                                 <li><span>Verification Method: Test</span></li>
                             </ul>
-                            <h4 data-id="334-Availability" id="334-Availability"><a href="#334-Availability"
-                                    title="334-Availability"><span></span></a><span>3.3.4 Availability</span></h4>
+                            <h4 data-id="334-availability" id="334-availability"><a href="#334-availability"
+                                    title="334-availability"><span></span></a><span>3.3.4 Availability</span></h4>
                             <ul>
                                 <li><span>ID: REQ-AVAIL-001</span></li>
                                 <li><span>Title: Prototype availability</span></li>
@@ -2367,8 +2358,8 @@
                                 </li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="335-Observability" id="335-Observability"><a href="#335-Observability"
-                                    title="335-Observability"><span></span></a><span>3.3.5 Observability</span></h4>
+                            <h4 data-id="335-observability" id="335-observability"><a href="#335-observability"
+                                    title="335-observability"><span></span></a><span>3.3.5 Observability</span></h4>
                             <ul>
                                 <li>
                                     <p><span>ID: REQ-OBS-001</span></p>
@@ -2394,8 +2385,8 @@
                                     <p><span>Verification Method: Test / Inspection</span></p>
                                 </li>
                             </ul>
-                            <h3 data-id="34-Compliance" id="34-Compliance"><a href="#34-Compliance"
-                                    title="34-Compliance"><span></span></a><span>3.4 Compliance</span></h3>
+                            <h3 data-id="34-compliance" id="34-compliance"><a href="#34-compliance"
+                                    title="34-compliance"><span></span></a><span>3.4 Compliance</span></h3>
                             <ul>
                                 <li>
                                     <p><span>ID: REQ-COMP-001</span></p>
@@ -2441,12 +2432,12 @@
                                     <p><span>Verification Method: Inspection</span></p>
                                 </li>
                             </ul>
-                            <h3 data-id="35-Design-and-Implementation" id="35-Design-and-Implementation"><a
-                                    href="#35-Design-and-Implementation"
-                                    title="35-Design-and-Implementation"><span></span></a><span>3.5 Design and
+                            <h3 data-id="35-design-and-implementation" id="35-design-and-implementation"><a
+                                    href="#35-design-and-implementation"
+                                    title="35-design-and-implementation"><span></span></a><span>3.5 Design and
                                     Implementation</span></h3>
-                            <h4 data-id="351-Installation" id="351-Installation"><a href="#351-Installation"
-                                    title="351-Installation"><span></span></a><span>3.5.1 Installation</span></h4>
+                            <h4 data-id="351-installation" id="351-installation"><a href="#351-installation"
+                                    title="351-installation"><span></span></a><span>3.5.1 Installation</span></h4>
                             <ul>
                                 <li><span>ID: REQ-INST-001</span></li>
                                 <li><span>Title: Modular System Deployment</span></li>
@@ -2459,9 +2450,9 @@
                                         accessible via a standard network port.</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="352-Build-and-Delivery" id="352-Build-and-Delivery"><a
-                                    href="#352-Build-and-Delivery"
-                                    title="352-Build-and-Delivery"><span></span></a><span>3.5.2 Build and
+                            <h4 data-id="352-build-and-delivery" id="352-build-and-delivery"><a
+                                    href="#352-build-and-delivery"
+                                    title="352-build-and-delivery"><span></span></a><span>3.5.2 Build and
                                     Delivery</span></h4>
                             <ul>
                                 <li>
@@ -2489,8 +2480,8 @@
                                     <p><span>Verification Method: Demonstration</span></p>
                                 </li>
                             </ul>
-                            <h4 data-id="353-Distribution" id="353-Distribution"><a href="#353-Distribution"
-                                    title="353-Distribution"><span></span></a><span>3.5.3 Distribution</span></h4>
+                            <h4 data-id="353-distribution" id="353-distribution"><a href="#353-distribution"
+                                    title="353-distribution"><span></span></a><span>3.5.3 Distribution</span></h4>
                             <ul>
                                 <li><span>ID: REQ-DIST-001</span></li>
                                 <li><span>Title: Single-city deployment</span></li>
@@ -2503,8 +2494,8 @@
                                         appropriate message</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="354-Maintainability" id="354-Maintainability"><a href="#354-Maintainability"
-                                    title="354-Maintainability"><span></span></a><span>3.5.4 Maintainability</span></h4>
+                            <h4 data-id="354-maintainability" id="354-maintainability"><a href="#354-maintainability"
+                                    title="354-maintainability"><span></span></a><span>3.5.4 Maintainability</span></h4>
                             <ul>
                                 <li><span>ID: REQ-MAINT-001</span></li>
                                 <li><span>Title: Data refresh procedure</span></li>
@@ -2516,8 +2507,8 @@
                                         scores and overlays within 30 minutes</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="355-Reusability" id="355-Reusability"><a href="#355-Reusability"
-                                    title="355-Reusability"><span></span></a><span>3.5.5 Reusability</span></h4>
+                            <h4 data-id="355-reusability" id="355-reusability"><a href="#355-reusability"
+                                    title="355-reusability"><span></span></a><span>3.5.5 Reusability</span></h4>
                             <ul>
                                 <li><span>ID: REQ-REUSE-001</span></li>
                                 <li><span>Title: City configuration separation</span></li>
@@ -2531,8 +2522,8 @@
                                 </li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="356-Portability" id="356-Portability"><a href="#356-Portability"
-                                    title="356-Portability"><span></span></a><span>3.5.6 Portability</span></h4>
+                            <h4 data-id="356-portability" id="356-portability"><a href="#356-portability"
+                                    title="356-portability"><span></span></a><span>3.5.6 Portability</span></h4>
                             <ul>
                                 <li><span>ID: REQ-PORT-001</span></li>
                                 <li><span>Title: Local Developer Environment Standardization</span></li>
@@ -2544,8 +2535,8 @@
                                         computer</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="357-Cost" id="357-Cost"><a href="#357-Cost"
-                                    title="357-Cost"><span></span></a><span>3.5.7 Cost</span></h4>
+                            <h4 data-id="357-cost" id="357-cost"><a href="#357-cost"
+                                    title="357-cost"><span></span></a><span>3.5.7 Cost</span></h4>
                             <ul>
                                 <li><span>ID: REQ-COST-001</span></li>
                                 <li><span>Title: Zero licensing cost</span></li>
@@ -2558,8 +2549,8 @@
                                         confirming its free/open-source license must be maintained</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="358-Deadline" id="358-Deadline"><a href="#358-Deadline"
-                                    title="358-Deadline"><span></span></a><span>3.5.8 Deadline</span></h4>
+                            <h4 data-id="358-deadline" id="358-deadline"><a href="#358-deadline"
+                                    title="358-deadline"><span></span></a><span>3.5.8 Deadline</span></h4>
                             <ul>
                                 <li><span>ID: REQ-DEAD-001</span></li>
                                 <li><span>Title: Prototype delivery</span></li>
@@ -2571,8 +2562,8 @@
                                         requirements verified</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="359-Proof-of-Concept" id="359-Proof-of-Concept"><a href="#359-Proof-of-Concept"
-                                    title="359-Proof-of-Concept"><span></span></a><span>3.5.9 Proof of Concept</span>
+                            <h4 data-id="359-proof-of-concept" id="359-proof-of-concept"><a href="#359-proof-of-concept"
+                                    title="359-proof-of-concept"><span></span></a><span>3.5.9 Proof of Concept</span>
                             </h4>
                             <ul>
                                 <li><span>ID: REQ-POC-001</span></li>
@@ -2588,9 +2579,9 @@
                                         path between the same origin-destination.</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h4 data-id="3510-Change-Management" id="3510-Change-Management"><a
-                                    href="#3510-Change-Management"
-                                    title="3510-Change-Management"><span></span></a><span>3.5.10 Change
+                            <h4 data-id="3510-change-management" id="3510-change-management"><a
+                                    href="#3510-change-management"
+                                    title="3510-change-management"><span></span></a><span>3.5.10 Change
                                     Management</span></h4>
                             <ul>
                                 <li><span>ID: REQ-CM-001</span></li>
@@ -2602,11 +2593,11 @@
                                         and must show history of data changes</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h3 data-id="36-AIML" id="36-AIML"><a href="#36-AIML"
-                                    title="36-AIML"><span></span></a><span>3.6 AI/ML</span></h3>
-                            <h4 data-id="361-Model-Specification" id="361-Model-Specification"><a
-                                    href="#361-Model-Specification"
-                                    title="361-Model-Specification"><span></span></a><span>3.6.1 Model
+                            <h3 data-id="36-aiml" id="36-aiml"><a href="#36-aiml"
+                                    title="36-aiml"><span></span></a><span>3.6 AI/ML</span></h3>
+                            <h4 data-id="361-model-specification" id="361-model-specification"><a
+                                    href="#361-model-specification"
+                                    title="361-model-specification"><span></span></a><span>3.6.1 Model
                                     Specification</span></h4>
                             <ul>
                                 <li><span>ID: REQ-ML-001</span></li>
@@ -2622,8 +2613,8 @@
                                         dataset.</span></li>
                                 <li><span>Verification Method: Analysis</span></li>
                             </ul>
-                            <h4 data-id="362-Data-Management" id="362-Data-Management"><a href="#362-Data-Management"
-                                    title="362-Data-Management"><span></span></a><span>3.6.2 Data Management</span></h4>
+                            <h4 data-id="362-data-management" id="362-data-management"><a href="#362-data-management"
+                                    title="362-data-management"><span></span></a><span>3.6.2 Data Management</span></h4>
                             <ul>
                                 <li><span>ID: REQ-ML-003</span></li>
                                 <li><span>Title: Training data provenance</span></li>
@@ -2634,8 +2625,8 @@
                                         delivery</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="363-Guardrails" id="363-Guardrails"><a href="#363-Guardrails"
-                                    title="363-Guardrails"><span></span></a><span>3.6.3 Guardrails</span></h4>
+                            <h4 data-id="363-guardrails" id="363-guardrails"><a href="#363-guardrails"
+                                    title="363-guardrails"><span></span></a><span>3.6.3 Guardrails</span></h4>
                             <p><span>ID: REQ-ML-004</span><br />
                                 <span>Title: Prediction abstention</span><br />
                                 <span>Statement: The system may optionally use a crime prediction model. If a model is
@@ -2644,8 +2635,8 @@
                                 <span>Acceptance Criteria: N/A (conditional on model use)</span><br />
                                 <span>Verification Method: Test</span>
                             </p>
-                            <h4 data-id="364-Ethics" id="364-Ethics"><a href="#364-Ethics"
-                                    title="364-Ethics"><span></span></a><span>3.6.4 Ethics</span></h4>
+                            <h4 data-id="364-ethics" id="364-ethics"><a href="#364-ethics"
+                                    title="364-ethics"><span></span></a><span>3.6.4 Ethics</span></h4>
                             <ul>
                                 <li><span>ID: REQ-ML-005</span></li>
                                 <li><span>Title: Model card documentation</span></li>
@@ -2656,9 +2647,9 @@
                                 <li><span>Acceptance Criteria: N/A (deferred with model)</span></li>
                                 <li><span>Verification Method: Inspection</span></li>
                             </ul>
-                            <h4 data-id="365-Human-in-the-Loop" id="365-Human-in-the-Loop"><a
-                                    href="#365-Human-in-the-Loop"
-                                    title="365-Human-in-the-Loop"><span></span></a><span>3.6.5 Human-in-the-Loop</span>
+                            <h4 data-id="365-human-in-the-loop" id="365-human-in-the-loop"><a
+                                    href="#365-human-in-the-loop"
+                                    title="365-human-in-the-loop"><span></span></a><span>3.6.5 Human-in-the-Loop</span>
                             </h4>
                             <ul>
                                 <li><span>ID: REQ-ML-006</span></li>
@@ -2671,8 +2662,8 @@
                                 <li><span>Acceptance Criteria: N/A (deferred with model)</span></li>
                                 <li><span>Verification Method: Demonstration</span></li>
                             </ul>
-                            <h2 data-id="4-Verification" id="4-Verification"><a href="#4-Verification"
-                                    title="4-Verification"><span></span></a><span>4. Verification</span></h2>
+                            <h2 data-id="4-verification" id="4-verification"><a href="#4-verification"
+                                    title="4-verification"><span></span></a><span>4. Verification</span></h2>
                             <table>
                                 <thead>
                                     <tr>
@@ -3023,10 +3014,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h2 data-id="5-Appendixes" id="5-Appendixes"><a href="#5-Appendixes"
-                                    title="5-Appendixes"><span></span></a><span>5. Appendixes</span></h2>
-                            <h3 data-id="A-Glossary" id="A-Glossary"><a href="#A-Glossary"
-                                    title="A-Glossary"><span></span></a><span>A. Glossary</span></h3>
+                            <h2 data-id="5-appendixes" id="5-appendixes"><a href="#5-appendixes"
+                                    title="5-appendixes"><span></span></a><span>5. Appendixes</span></h2>
+                            <h3 data-id="a-glossary" id="a-glossary"><a href="#a-glossary"
+                                    title="a-glossary"><span></span></a><span>A. Glossary</span></h3>
                             <table>
                                 <thead>
                                     <tr>
@@ -3107,9 +3098,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h3 data-id="B-Interview-Themes-Cross-Reference" id="B-Interview-Themes-Cross-Reference"><a
-                                    href="#B-Interview-Themes-Cross-Reference"
-                                    title="B-Interview-Themes-Cross-Reference"><span></span></a><span>B. Interview
+                            <h3 data-id="b-interview-themes-cross-reference" id="b-interview-themes-cross-reference"><a
+                                    href="#b-interview-themes-cross-reference"
+                                    title="b-interview-themes-cross-reference"><span></span></a><span>B. Interview
                                     Themes Cross-Reference</span></h3>
                             <table>
                                 <thead>
@@ -3188,12 +3179,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h3 data-id="C-Survey-Results-Summary" id="C-Survey-Results-Summary"><a
-                                    href="#C-Survey-Results-Summary"
-                                    title="C-Survey-Results-Summary"><span></span></a><span>C. Survey Results
+                            <h3 data-id="c-survey-results-summary" id="c-survey-results-summary"><a
+                                    href="#c-survey-results-summary"
+                                    title="c-survey-results-summary"><span></span></a><span>C. Survey Results
                                     Summary</span></h3>
-                            <h4 data-id="C1-Methodology" id="C1-Methodology"><a href="#C1-Methodology"
-                                    title="C1-Methodology"><span></span></a><span>C.1 Methodology</span></h4>
+                            <h4 data-id="c1-methodology" id="c1-methodology"><a href="#c1-methodology"
+                                    title="c1-methodology"><span></span></a><span>C.1 Methodology</span></h4>
                             <ul>
                                 <li><strong><span>Target population</span></strong><span>: University students and young
                                         professionals who frequently walk at night</span></li>
@@ -3208,9 +3199,9 @@
                                         options, open-ended free-text sections, designed to avoid leading bias</span>
                                 </li>
                             </ul>
-                            <h4 data-id="C2-Key-Quantitative-Findings" id="C2-Key-Quantitative-Findings"><a
-                                    href="#C2-Key-Quantitative-Findings"
-                                    title="C2-Key-Quantitative-Findings"><span></span></a><span>C.2 Key Quantitative
+                            <h4 data-id="c2-key-quantitative-findings" id="c2-key-quantitative-findings"><a
+                                    href="#c2-key-quantitative-findings"
+                                    title="c2-key-quantitative-findings"><span></span></a><span>C.2 Key Quantitative
                                     Findings</span></h4>
                             <table>
                                 <thead>
@@ -3240,9 +3231,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h4 data-id="C3-Notable-Free-Text-Themes" id="C3-Notable-Free-Text-Themes"><a
-                                    href="#C3-Notable-Free-Text-Themes"
-                                    title="C3-Notable-Free-Text-Themes"><span></span></a><span>C.3 Notable Free-Text
+                            <h4 data-id="c3-notable-free-text-themes" id="c3-notable-free-text-themes"><a
+                                    href="#c3-notable-free-text-themes"
+                                    title="c3-notable-free-text-themes"><span></span></a><span>C.3 Notable Free-Text
                                     Themes</span></h4>
                             <ul>
                                 <li><span>Safety concerns beyond crime: ice on footpaths, summer heat, stray
@@ -3251,8 +3242,8 @@
                                 <li><span>Users find persistent notification/nagging prompts a reason to
                                         uninstall</span></li>
                             </ul>
-                            <h4 data-id="C4-Limitations" id="C4-Limitations"><a href="#C4-Limitations"
-                                    title="C4-Limitations"><span></span></a><span>C.4 Limitations</span></h4>
+                            <h4 data-id="c4-limitations" id="c4-limitations"><a href="#c4-limitations"
+                                    title="c4-limitations"><span></span></a><span>C.4 Limitations</span></h4>
                             <ul>
                                 <li><span>Sample skewed toward university-age demographics and/or social media
                                         users</span></li>
