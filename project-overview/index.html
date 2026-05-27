@@ -967,10 +967,10 @@
             </div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a class="active" href="./">Home</a></li>
-                <li><a href="./project-overview/">Project Overview</a></li>
-                <li><a href="./requirements/">Requirements</a></li>
-                <li><a href="./about-us/">About Us</a></li>
+                <li><a href="../">Home</a></li>
+                <li><a class="active" href="../project-overview/">Project Overview</a></li>
+                <li><a href="../requirements/">Requirements</a></li>
+                <li><a href="../about-us/">About Us</a></li>
             </ul>
         </div>
     </nav>
@@ -980,56 +980,172 @@
          ============================================================ -->
     <main>
 
-        <section id="tab-home" class="tab-section active visible">
+        <section id="tab-overview" class="tab-section active visible">
+            <div class="container">
+                <div class="overview-header">
+                    <h2>Project Overview</h2>
+                    <p>A detailed look at the research foundation, problem space, and technical approach behind
+                        SafePath.</p>
+                </div>
 
-            <!-- Hero Section -->
-            <div class="hero">
-                <div class="container">
-                    <span class="hero-label">PBL3 Project</span>
-                    <h1>Safe<span class="accent">Path</span></h1>
-                    <p class="hero-description">
-                        SafePath is a research-driven mobile navigation application designed to enhance pedestrian
-                        safety during nighttime hours. By integrating real-time environmental data with intelligent
-                        route planning, SafePath guides users along the safest possible paths after dark.
+                <div class="srs-nav-sticky">
+                    <a href="#overview-introduction"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-introduction').scrollIntoView({behavior: 'smooth'}) }">1.
+                        Introduction</a>
+                    <a href="#overview-problem-statement"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-problem-statement').scrollIntoView({behavior: 'smooth'}) }">2.
+                        Problem Statement</a>
+                    <a href="#overview-technical-solution"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-technical-solution').scrollIntoView({behavior: 'smooth'}) }">3.
+                        Technical Solution</a>
+                    <a href="#overview-data-engineering"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-data-engineering').scrollIntoView({behavior: 'smooth'}) }">4.
+                        Data Engineering</a>
+                    <a href="#overview-implementation-strategy"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-implementation-strategy').scrollIntoView({behavior: 'smooth'}) }">5.
+                        Next Steps</a>
+                    <a href="#overview-expected-outcomes"
+                        onclick="(e) => { e.preventDefault(); document.getElementById('overview-expected-outcomes').scrollIntoView({behavior: 'smooth'}) }">6.
+                        Expected Outcomes</a>
+                </div>
+
+                <div class="srs-content">
+                    <h2 id="overview-introduction">Introduction</h2>
+                    <p>
+                        In today's society, safety remains a critical concern, especially for vulnerable groups, such as
+                        women. SafePath is a pedestrian-focused navigation platform designed to improve urban safety by
+                        prioritizing environmental and security factors alongside route efficiency. By synthesizing
+                        real-time data, historical crime analytics, and geospatial infrastructure insights, SafePath
+                        provides users with dynamic, risk-aware routing. The project is currently in the
+                        data-acquisition phase, evaluating the feasibility of implementing the system within the urban
+                        landscapes of Boston or Philadelphia.
+                    </p>
+
+                    <hr>
+
+                    <h2 id="overview-problem-statement">Problem Statement</h2>
+                    <p>
+                        Urban navigation remains tethered to models that optimize for speed or distance, often ignoring
+                        the "feeling of safety" that is critical for vulnerable populations. Current challenges include:
+                    </p>
+                    <ul>
+                        <li><strong>Insufficient Street Lighting:</strong> Poorly lit areas heavily influences the
+                            perception of safety. Lighting solely massively decides whether people feel safe or not.
+                        </li>
+                        <li><strong>Lack of Awareness:</strong> Travelers, and even local dwellers are often not aware
+                            of the crime frequency of certain areas and how much they are at risk in said area.</li>
+                        <li><strong>Limited Support:</strong> Current navigation systems do not prioritize personal
+                            safety, focusing solely on speed or distance.</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2 id="overview-technical-solution">Technical Solution and Methodology</h2>
+                    <p>
+                        SafePath differentiates itself by shifting from standard pathfinding (like Dijkstra's) to a
+                        Multi-Factor Cost Surface approach.
+                    </p>
+                    <ol>
+                        <li><strong>Crime Prediction Algorithm:</strong> To provide true safety intelligence, we are
+                            moving beyond simple hotspot mapping. We are planning and considering adopting Risk Terrain
+                            Modeling (RTM). Unlike simple heatmaps that merely show where crime has occurred, RTM
+                            analyzes the spatial landscape to understand why crime occurs in specific places. We plan to
+                            model the influence of environmental features (e.g., streetlights, convenience stores, pubs,
+                            and public transit hubs) to create a "risk surface." By weighting these features, we can
+                            predict likely crime locations even if incidents have not occurred there yet.</li>
+                        <li><strong>Macro-Prediction (RTM):</strong> We are implementing a dual-layer predictive
+                            approach using GIS-based layers to assess the static and dynamic "attractors" of criminal
+                            activity. This allows the system to identify regions with higher latent risk. Micro-Routing
+                            uses a modified A* search algorithm where the "cost" of traversing a street segment is a
+                            weighted function of: Luminance Score (high-resolution integration of street light
+                            density/data), Incidence Frequency (historical crime data treated as a temporal decay
+                            function), and User Reports (real-time, crowdsourced safety sentiment data).</li>
+                    </ol>
+
+                    <hr>
+
+                    <h2 id="overview-data-engineering">Data Engineering and Processing Pipeline</h2>
+                    <p>
+                        To transform raw CSV datasets into a functional navigation model, SafePath utilizes a geospatial
+                        pipeline focused on feature engineering and spatial joins. Subject to change in the
+                        implementation phase.
+                    </p>
+                    <h3>6.1 Data Ingestion and City Selection</h3>
+                    <p>
+                        We are currently auditing Boston and Philadelphia based on the "spatial completeness" of their
+                        open-source datasets.
+                    </p>
+                    <ul>
+                        <li><strong>Extraction:</strong> Ingesting CSVs containing streetlight coordinates (Lat/Long)
+                            and crime incident logs (Type, Time, Location).</li>
+                        <li><strong>Temporal Filtering:</strong> Crime data is partitioned by "Incident Time" to isolate
+                            nighttime risks, as the influence of lighting is time-dependent.</li>
+                    </ul>
+
+                    <h3>6.2 Spatial Feature Engineering</h3>
+                    <p>
+                        Raw coordinates are converted into actionable environmental layers:
+                    </p>
+                    <ul>
+                        <li><strong>Luminance Buffering:</strong> We create a 15–20 meter circular buffer around each
+                            streetlight coordinate to represent the effective "safe zone" of light.</li>
+                        <li><strong>Risk Terrain Modeling (RTM):</strong> We utilize RTM to identify "Risk Attractors"
+                            (past crime clusters) and "Protective Factors" (high streetlight density). We apply Kernel
+                            Density Estimation (KDE) to smooth incident points into a continuous probability surface.
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <h2 id="overview-implementation-strategy">Implementation Strategy: Next Steps</h2>
+                    <p>
+                        We are currently evaluating Boston and Philadelphia based on three technical criteria:
+                    </p>
+                    <ol>
+                        <li><strong>Data Granularity:</strong> The availability of open-source GIS datasets (streetlight
+                            locations, public transit activity).</li>
+                        <li><strong>Open Crime API Reliability:</strong> The frequency and detail level of public crime
+                            reporting APIs.</li>
+                        <li><strong>Topographic Complexity:</strong> The urban density and pedestrian traffic patterns
+                            in these cities to test our RTM model's robustness.</li>
+                    </ol>
+
+                    <hr>
+
+                    <h2 id="overview-expected-outcomes">Expected Outcomes and Impact</h2>
+                    <p>
+                        The success of SafePath is measured by its ability to translate complex data into a simplified,
+                        intuitive experience for the pedestrian. By the end of this development cycle, we expect to
+                        achieve the following:
+                    </p>
+                    <p>
+                        <strong>Informed Navigational Confidence:</strong> Instead of choosing routes based on habit or
+                        "best guesses," users will have access to Safety-First Routing. We expect users to experience a
+                        measurable reduction in travel-related anxiety by navigating paths that are mathematically
+                        verified to be better lit and statistically less prone to incidents.
+                    </p>
+                    <p>
+                        <strong>A Predictive Safety Ecosystem:</strong> SafePath will anticipate higher-risk scenarios
+                        before they happen. If the data shows a specific alleyway lacks lighting and has a history of
+                        late-night incidents, the app will proactively steer the user to a well-lit main thoroughfare
+                        instead.
+                    </p>
+                    <p>
+                        <strong>Community-Powered Accuracy:</strong> Real-time crowdsourcing will bridge the gap between
+                        data and reality. If a streetlight is out or a specific area feels "off" due to temporary
+                        factors like construction or crowds, user reports will immediately influence the routing costs
+                        for others. This creates a collaborative safety network where each user contributes to the
+                        security of the whole community.
+                    </p>
+                    <p>
+                        <strong>Data-Driven Urban Insights:</strong> Long-term, SafePath aims to provide valuable
+                        feedback to city planners by identifying "Dark Zones" where the algorithm consistently redirects
+                        traffic, highlighting specific areas where improved infrastructure like better lighting or
+                        increased patrols could have the most significant impact on public safety.
                     </p>
                 </div>
+
             </div>
-
-            <hr class="section-divider">
-
-            <!-- Highlight Cards -->
-            <div class="section-block">
-                <div class="container">
-                    <div class="highlight-cards">
-
-                        <!-- Card 1: Problem -->
-                        <div class="highlight-card">
-                            <div class="card-number">01</div>
-                            <h3>The Problem</h3>
-                            <p>
-                                <!-- HOME_CARD_PROBLEM: Add or edit the problem description here -->
-                                Pedestrian accidents and safety incidents disproportionately occur during nighttime.
-                                Existing navigation apps optimize for speed and distance — not for personal safety in
-                                low-visibility conditions.
-                            </p>
-                        </div>
-
-                        <!-- Card 2: Solution -->
-                        <div class="highlight-card">
-                            <div class="card-number">02</div>
-                            <h3>Our Solution</h3>
-                            <p>
-                                <!-- HOME_CARD_SOLUTION: Add or edit the solution description here -->
-                                SafePath leverages street lighting data, crime statistics, pedestrian traffic patterns,
-                                and real-time environmental sensors to compute and recommend the safest walking routes
-                                for nighttime navigation.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </section>
 
     </main>
