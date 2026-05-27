@@ -1651,7 +1651,7 @@
                                     offers pedestrian routing that accounts for street lighting, crime risk, and
                                     environmental hazards. The system depends on publicly available municipal open-data
                                     portals for streetlight and crime-incident data, and on open-source routing engines
-                                    (GraphHopper or openrouteservice) for path computation.</span></p>
+                                     for path computation.</span></p>
                             <h3 data-id="22-product-functions" id="22-product-functions"><a href="#22-product-functions"
                                     title="22-product-functions"><span></span></a><span>2.2 Product Functions</span>
                             </h3>
@@ -1829,12 +1829,6 @@
                                         <td><span>Web Frontend</span></td>
                                         <td><span>v0.1</span></td>
                                         <td><span>Base map tile rendering (raster or vector)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>REQ-INT-SW-005</span></td>
-                                        <td><span>Backend</span></td>
-                                        <td><span>v0.1</span></td>
-                                        <td><span>No public API exposed in prototype</span></td>
                                     </tr>
                                     <tr>
                                         <td><span>REQ-FUNC-001 through REQ-FUNC-004</span></td>
@@ -2033,8 +2027,6 @@
                                 <li><span>REQ-INT-UI-002: The system shall display the computed route as a coloured
                                         polyline on the map, with colour indicating per-segment safety level (green =
                                         safe, yellow = moderate, red = unsafe)</span></li>
-                                <li><span>REQ-INT-UI-003: The system shall provide a toggle to overlay streetlight
-                                        locations as point markers on the map</span></li>
                                 <li><span>REQ-INT-UI-004: The system shall provide a toggle to overlay a crime heatmap
                                         layer</span></li>
                                 <li><span>REQ-INT-UI-005: The system shall display a safety score breakdown panel
@@ -2049,8 +2041,8 @@
                                         score</span></li>
                                 <li><span>REQ-INT-UI-008: The system shall render correctly on screens at least 360 px
                                         wide.</span></li>
-                                <li><span>REQ-INT-UI-009: The system shall prompt for location access but not send
-                                        location data without explicit user action</span></li>
+                                <li><span>REQ-INT-UI-009: The system shall prompt for location access if necessary but 
+                                        not send location data without explicit user action</span></li>
                             </ul>
                             <h4 data-id="312-hardware-interfaces" id="312-hardware-interfaces"><a
                                     href="#312-hardware-interfaces"
