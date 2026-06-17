@@ -483,13 +483,16 @@
         }
         .lightbox-image {
             display: block;
-            width: 100%;
+            max-width: 100%;
+            max-height: calc(90vh - 80px);
+            width: auto;
             height: auto;
             border-radius: 8px;
             background: #FFFFFF;
             padding: 16px;
             transform-origin: top center;
             transition: transform 0.2s ease;
+            object-fit: contain;
         }
 
         /* ============================================================
@@ -750,8 +753,10 @@
             currentZoom = 1;
             const lightboxImg = document.getElementById('lightboxImg');
             lightboxImg.src = src;
-            lightboxImg.style.width = '100%';
             lightboxImg.style.transform = 'scale(1)';
+            lightboxImg.style.width = 'auto';
+            lightboxImg.style.maxWidth = '100%';
+            lightboxImg.style.maxHeight = 'calc(90vh - 80px)';
             document.getElementById('lightboxTitle').innerText = title;
             document.getElementById('lightbox').classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -767,20 +772,28 @@
         }
 
         function zoomIn() {
-            currentZoom = Math.min(currentZoom + 0.25, 3);
-            document.getElementById('lightboxImg').style.width = (currentZoom * 100) + '%';
+            currentZoom = Math.min(currentZoom + 0.25, 4);
+            const img = document.getElementById('lightboxImg');
+            img.style.maxWidth = 'none';
+            img.style.maxHeight = 'none';
+            img.style.width = (currentZoom * 100) + '%';
         }
 
         function zoomOut() {
             currentZoom = Math.max(currentZoom - 0.25, 0.25);
-            document.getElementById('lightboxImg').style.width = (currentZoom * 100) + '%';
+            const img = document.getElementById('lightboxImg');
+            img.style.maxWidth = 'none';
+            img.style.maxHeight = 'none';
+            img.style.width = (currentZoom * 100) + '%';
         }
 
         function zoomReset() {
             currentZoom = 1;
-            const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.style.width = '100%';
-            lightboxImg.style.transform = 'scale(1)';
+            const img = document.getElementById('lightboxImg');
+            img.style.width = 'auto';
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = 'calc(90vh - 80px)';
+            img.style.transform = 'scale(1)';
         }
 
         document.addEventListener('keydown', function (event) {
