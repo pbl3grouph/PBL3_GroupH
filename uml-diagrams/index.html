@@ -253,7 +253,7 @@
 
         .uml-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 32px;
             padding: 48px 0 60px;
         }
@@ -590,7 +590,7 @@
 
                 <!-- Card 1: Class Diagram -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Class.svg', 'Class Diagram')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Class.svg" alt="Class Diagram" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -603,7 +603,7 @@
 
                 <!-- Card 2: Component Diagram -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Component.svg', 'Component Diagram')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Component.svg" alt="Component Diagram" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -616,7 +616,7 @@
 
                 <!-- Card 3: Deployment Diagram -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Deployment.svg', 'Deployment Diagram')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Deployment.svg" alt="Deployment Diagram" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -629,7 +629,7 @@
 
                 <!-- Card 4: Sequence Diagram — Report -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceReport.svg', 'Sequence Diagram — Report')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceReport.svg" alt="Sequence Diagram — Report" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -642,7 +642,7 @@
 
                 <!-- Card 5: Sequence Diagram — Route -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceRoute.svg', 'Sequence Diagram — Route')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceRoute.svg" alt="Sequence Diagram — Route" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -655,7 +655,7 @@
 
                 <!-- Card 6: Use Case Diagram -->
                 <div class="diagram-card">
-                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/UseCase.png', 'Use Case Diagram')">
+                    <div class="diagram-image-container">
                         <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/UseCase.png" alt="Use Case Diagram" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
@@ -685,7 +685,7 @@
          LIGHTBOX / MODAL STRUCTURE
          ============================================================ -->
     <div id="lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
-        <div class="lightbox-content-wrapper" onclick="event.stopPropagation()">
+        <div class="lightbox-content-wrapper">
             <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
             <img id="lightboxImg" class="lightbox-image" src="" alt="Zoomed Diagram">
             <div id="lightboxTitle" class="lightbox-title"></div>
@@ -711,6 +711,16 @@
         });
 
         // Lightbox Functions
+        document.querySelectorAll('.diagram-image-container').forEach(container => {
+            container.addEventListener('click', function() {
+                const img = this.querySelector('.diagram-image');
+                const title = this.closest('.diagram-card').querySelector('h3').innerText;
+                if (img) {
+                    openLightbox(img.src, title);
+                }
+            });
+        });
+
         function openLightbox(src, title) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
