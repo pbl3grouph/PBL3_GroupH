@@ -608,16 +608,29 @@
             <!-- Diagrams Grid -->
             <div class="uml-grid">
 
-                <!-- Card 1: Class Diagram -->
+                <!-- Card 1a: Class Diagram — Part A -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="images/Class.svg" alt="Class Diagram" class="diagram-image">
+                        <img src="images/classPartA.svg" alt="Class Diagram — Part A" class="diagram-image">
                         <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
-                        <h3>Class Diagram</h3>
-                        <p>This class diagram represents a full-stack, community-driven geospatial application that offers users optimised, safer routes by combining real-time environmental data (e.g. crime statistics, lighting levels, user-submitted incident reports) with a GraphHopper-based routing engine. A React frontend handles user interaction, a Java backend takes care of API requests and the gamification logic to drive community engagement, and a pre-processing pipeline transforms raw environmental data into high-performance binary grids for rapid spatial lookups.</p>
+                        <h3>Class Diagram — Part A: Core Backend, Routing, & Gamification Logic</h3>
+                        <p>This diagram isolates the operational system architecture, how the server handles web requests, processes game mechanics, and calculates weights for safe routes.</p>
+                    </div>
+                </div>
+
+                <!-- Card 1b: Class Diagram — Part B -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container">
+                        <img src="images/classPartB.svg" alt="Class Diagram — Part B" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                    <span class="diagram-tag">UML</span>
+                        <h3>Class Diagram — Part B: Safety Subsystem & Data Pipeline Flow</h3>
+                        <p>This diagram isolates how data moves from raw files through Python analytics, into your Java models, and finally how it gets generated into UI image layers.</p>
                     </div>
                 </div>
 
