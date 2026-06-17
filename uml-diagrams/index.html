@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePath — UML Diagrams</title>
+    <meta name="description"
+        content="Structural and behavioral models illustrating the architecture and interactions of the SafePath system.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        /* ============================================================
+           CSS VARIABLES — Professional Safety Navigation Palette
+           ============================================================ */
+        :root {
+            /* Colors */
+            --color-bg-deep: #FFFFFF;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-card: #FFFFFF;
+            --color-bg-card-hover: #F8FAFC;
+            --color-bg-nav: rgba(255, 255, 255, 0.85);
+            --color-accent: #2563EB; /* Royal Blue */
+            --color-accent-dim: #1D4ED8;
+            --color-accent-glow: rgba(37, 99, 235, 0.08);
+            --color-accent-secondary: #475569; /* Slate Blue */
+            --color-text-primary: #0F172A; /* Deep Slate Navy */
+            --color-text-secondary: #1E293B; /* Slightly softer Slate Navy for body */
+            --color-text-muted: #475569;
+            --color-border: #E2E8F0;
+            --color-border-accent: rgba(37, 99, 235, 0.3);
+            --color-divider: #E2E8F0;
+
+            /* Fonts */
+            --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+            /* Spacing */
+            --nav-height: 70px;
+            --section-padding: 60px 0;
+            --container-width: 960px; /* Restrict container width for a comfortable reading size */
+            --border-radius: 12px;
+
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            background-image: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+            background-attachment: fixed;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(1.6rem, 3vw, 2.1rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--color-text-secondary);
+            font-size: 0.975rem;
+            max-width: 72ch;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--color-accent-dim);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================================
+           NAVIGATION — Sticky top bar
+           ============================================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: var(--color-bg-nav);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dim));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 700;
+            font-family: var(--font-display);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            border-radius: 20px;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .nav-links li a:hover {
+            color: var(--color-text-primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .nav-links li a.active {
+            color: var(--color-accent);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        /* Mobile hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--color-text-secondary);
+            border-radius: 2px;
+            transition: all var(--transition-fast);
+        }
+
+        /* ============================================================
+           MAIN CONTENT AREA
+           ============================================================ */
+        main {
+            margin-top: var(--nav-height);
+            min-height: calc(100vh - var(--nav-height));
+        }
+
+        /* ============================================================
+           UML DIAGRAMS TAB
+           ============================================================ */
+        .uml-header {
+            padding: 60px 0 30px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .uml-header h2 {
+            margin-bottom: 8px;
+        }
+
+        .uml-header p {
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+
+        .uml-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            padding: 48px 0 60px;
+        }
+
+        .diagram-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .diagram-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .diagram-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .diagram-image-container {
+            background: #F8FAFC; /* Light grey background */
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-border);
+            height: 280px; /* fixed height for consistency */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .diagram-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .diagram-image-container:hover .diagram-image {
+            transform: scale(1.03);
+        }
+
+        /* Hover Zoom Indicator Overlay */
+        .zoom-overlay {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            color: #FFFFFF;
+            padding: 6px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .diagram-image-container:hover .zoom-overlay {
+            opacity: 1;
+        }
+
+        .diagram-card-content {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .diagram-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent-dim);
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            align-self: flex-start;
+        }
+
+        .diagram-card-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--color-text-primary);
+        }
+
+        .diagram-card-content p {
+            font-size: 0.925rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ============================================================
+           FOOTER — Dark Grounding Status Bar
+           ============================================================ */
+        footer {
+            background: #0F172A;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            margin: 0 auto 8px;
+        }
+
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ============================================================
+           MODAL / LIGHTBOX FOR PREMIUM EXPERIENCE
+           ============================================================ */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-medium);
+        }
+
+        .lightbox-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: #FFFFFF;
+            padding: 20px;
+        }
+
+        .lightbox-title {
+            color: #FFFFFF;
+            margin-top: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+            line-height: 1;
+            padding: 8px;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-accent);
+        }
+
+        /* ============================================================
+           RESPONSIVE — MOBILE
+           ============================================================ */
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 60px;
+                --section-padding: 40px 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                flex-direction: column;
+                padding: 16px 24px;
+                gap: 8px;
+                transform: translateY(-120%);
+                opacity: 0;
+                transition: all var(--transition-medium);
+                pointer-events: none;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links li a {
+                padding: 10px 16px;
+                font-size: 0.95rem;
+                border-radius: 8px;
+            }
+
+            .nav-links li a.active {
+                background: rgba(37, 99, 235, 0.08);
+                color: var(--color-accent);
+            }
+
+            .uml-header {
+                padding: 40px 0 30px;
+            }
+
+            .uml-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 32px 0 40px;
+            }
+
+            .diagram-image-container {
+                height: 220px;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         NAVIGATION
+         ============================================================ -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <span class="brand-icon">SP</span>
+                SafePath
+            </div>
+
+            <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../">Home</a></li>
+                <li><a href="../project-overview/">Project Overview</a></li>
+                <li><a href="../requirements/">Requirements</a></li>
+                <li><a href="../about-us/">About Us</a></li>
+                <li><a class="active" href="../uml-diagrams/">UML Diagrams</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <main>
+        <div class="container">
+            <!-- Header Section -->
+            <div class="uml-header">
+                <h2>UML Diagrams</h2>
+                <p>Structural and behavioral models illustrating the architecture and interactions of the SafePath system.</p>
+            </div>
+
+            <!-- Diagrams Grid -->
+            <div class="uml-grid">
+
+                <!-- Card 1: Class Diagram -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Class.svg', 'Class Diagram')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Class.svg" alt="Class Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Class Diagram</h3>
+                        <p>Describes the static structure of the SafePath system — the classes involved, their attributes, methods, and relationships between them.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Component Diagram -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Component.svg', 'Component Diagram')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Component.svg" alt="Component Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Component Diagram</h3>
+                        <p>Illustrates how the system is split into components — the routing engine, data layers, APIs, and the interfaces connecting them.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Deployment Diagram -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Deployment.svg', 'Deployment Diagram')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Deployment.svg" alt="Deployment Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Deployment Diagram</h3>
+                        <p>Shows the physical deployment of SafePath — servers, client devices, and the infrastructure nodes that host each system component.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Sequence Diagram — Report -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceReport.svg', 'Sequence Diagram — Report')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceReport.svg" alt="Sequence Diagram — Report" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Sequence Diagram — Report</h3>
+                        <p>Models the interaction flow when a user submits a safety report, tracing the message through the system components over time.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Sequence Diagram — Route -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceRoute.svg', 'Sequence Diagram — Route')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceRoute.svg" alt="Sequence Diagram — Route" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Sequence Diagram — Route</h3>
+                        <p>Captures the step-by-step interaction when a user requests a safe route, from input through risk computation to the returned path.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Use Case Diagram -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container" onclick="openLightbox('https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/UseCase.png', 'Use Case Diagram')">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/UseCase.png" alt="Use Case Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">UML</span>
+                        <h3>Use Case Diagram</h3>
+                        <p>Defines the interactions between users and the SafePath system — the main actors and the use cases they trigger, such as route requests and hazard reporting.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+        <div class="container">
+            <p class="footer-brand">SafePath</p>
+            <p>Ritsumeikan University · College of Information Science and Engineering</p>
+            <p>PBL3: Creative Design · Academic Year 2026</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         LIGHTBOX / MODAL STRUCTURE
+         ============================================================ -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content-wrapper" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <img id="lightboxImg" class="lightbox-image" src="" alt="Zoomed Diagram">
+            <div id="lightboxTitle" class="lightbox-title"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT — Navigation & Lightbox
+         ============================================================ -->
+    <script>
+        // Mobile hamburger toggle
+        document.getElementById('navToggle').addEventListener('click', function () {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function (e) {
+            const navLinks = document.getElementById('navLinks');
+            const navToggle = document.getElementById('navToggle');
+            if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+                navLinks.classList.remove('open');
+            }
+        });
+
+        // Lightbox Functions
+        function openLightbox(src, title) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            
+            lightboxImg.src = src;
+            lightboxTitle.innerText = title;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent main page scrolling
+        }
+
+        function closeLightbox(event) {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('open');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
