@@ -630,7 +630,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
                         <h3>Component Diagram</h3>
-                        <p>Illustrates how the system is split into components — the routing engine, data layers, APIs, and the interfaces connecting them.</p>
+                        <p>This component diagram maps the decoupled, modular architecture of SafePath, detailing how a React frontend communicates with a Java 21 REST API backend and a Python data pipeline to process routing requests. It illustrates how the Routing Engine dynamically isolates and weighs pedestrian paths by cross-referencing user profiles against a dedicated Safety Data Subsystem built on lighting, crowd-sourced reports, and Risk Terrain Modeling (RTM).</p>
                     </div>
                 </div>
 
@@ -643,7 +643,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
                         <h3>Deployment Diagram</h3>
-                        <p>Shows the physical deployment of SafePath — servers, client devices, and the infrastructure nodes that host each system component.</p>
+                        <p>The SafePath deployment consists of a client device, an application host, and an external OpenStreetMap tile service. Users access the system through a web browser, which downloads and runs the React SPA bundle from the frontend web server over HTTPS port 443. API requests are handled through a reverse proxy to the backend API running on the JVM over HTTP port 8080. The backend uses the GraphHopper library in-process for routing, reads static processed safety data and the routing graph cache from local files, and writes only to Backend/data/user_reports.csv. There is no database in this deployment. The browser also connects directly to the OpenStreetMap tile service over HTTPS port 443 to load map tiles.</p>
                     </div>
                 </div>
 
@@ -656,7 +656,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
                         <h3>Sequence Diagram — Report</h3>
-                        <p>Models the interaction flow when a user submits a safety report, tracing the message through the system components over time.</p>
+                        <p>This sequence diagram outlines how SafePath initializes and prepares its safety maps before any users look up directions. The process begins when an admin or automated cron job triggers the data ingestion pipeline, pulling city streetlight datasets and historical crime records from external open data APIs. Once secured, the pipeline kicks off the AI/ML module, which calculates localized safety scores using a Kernel Density Estimation (KDE) model. These safety weights are then mapped onto the corresponding street segments, locking in a pre-computed safety matrix so the routing engine is ready to generate safe paths instantly when a user makes a request.</p>
                     </div>
                 </div>
 
@@ -669,7 +669,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
                         <h3>Sequence Diagram — Route</h3>
-                        <p>Captures the step-by-step interaction when a user requests a safe route, from input through risk computation to the returned path.</p>
+                        <p>This sequence diagram illustrates the SafePath route generation process. When a user enters a start location, destination, and safety profile, the request is sent from the browser through the frontend web server to the backend routing service. The backend validates the request and uses GraphHopper to generate both the fastest and safest routes. To determine the safest route, the system evaluates each road segment using crime data, lighting conditions, nearby user reports, and user-selected safety preferences through the SafePathWeighting component. The calculated routes and safety score breakdown are then returned to the browser for the user to compare and navigate safely.</p>
                     </div>
                 </div>
 
@@ -682,7 +682,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
                         <h3>Use Case Diagram</h3>
-                        <p>Defines the interactions between users and the SafePath system — the main actors and the use cases they trigger, such as route requests and hazard reporting.</p>
+                        <p>This use-case diagram outlines the interactions between three distinct user roles — Pedestrian User, Administrator, and City Planner/Researcher — and the features of the SafePath platform. The Pedestrian User manages navigation settings such as comparing safe versus fastest routes, selecting routing profiles, managing avoid zones, and submitting crowd-sourced incident reports. The Administrator handles system oversight including deleting user reports. The City Planner/Researcher focuses on data analysis tools such as toggling lighting and crime heatmap overlays and viewing safety score breakdowns to understand urban safety trends.</p>
                     </div>
                 </div>
 
