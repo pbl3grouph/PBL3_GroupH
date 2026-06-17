@@ -483,7 +483,7 @@
         }
         .lightbox-image {
             display: block;
-            max-width: 100%;
+            width: 100%;
             height: auto;
             border-radius: 8px;
             background: #FFFFFF;
@@ -750,6 +750,7 @@
             currentZoom = 1;
             const lightboxImg = document.getElementById('lightboxImg');
             lightboxImg.src = src;
+            lightboxImg.style.width = '100%';
             lightboxImg.style.transform = 'scale(1)';
             document.getElementById('lightboxTitle').innerText = title;
             document.getElementById('lightbox').classList.add('open');
@@ -767,17 +768,19 @@
 
         function zoomIn() {
             currentZoom = Math.min(currentZoom + 0.25, 3);
-            document.getElementById('lightboxImg').style.transform = `scale(${currentZoom})`;
+            document.getElementById('lightboxImg').style.width = (currentZoom * 100) + '%';
         }
 
         function zoomOut() {
             currentZoom = Math.max(currentZoom - 0.25, 0.25);
-            document.getElementById('lightboxImg').style.transform = `scale(${currentZoom})`;
+            document.getElementById('lightboxImg').style.width = (currentZoom * 100) + '%';
         }
 
         function zoomReset() {
             currentZoom = 1;
-            document.getElementById('lightboxImg').style.transform = 'scale(1)';
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.style.width = '100%';
+            lightboxImg.style.transform = 'scale(1)';
         }
 
         document.addEventListener('keydown', function (event) {
