@@ -8,10 +8,11 @@
     <meta name="description"
         content="Structural and behavioral models illustrating the architecture and interactions of the SafePath system.">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -294,7 +295,7 @@
             align-items: center;
             justify-content: center;
             border-bottom: 1px solid var(--color-border);
-            min-height: 350px; /* Scaled slightly larger for a full vertical stack document */
+            height: 280px; /* fixed height for consistency */
             overflow: hidden;
             position: relative;
         }
@@ -304,6 +305,37 @@
             max-height: 100%;
             object-fit: contain;
             transition: transform var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .diagram-image-container:hover .diagram-image {
+            transform: scale(1.03);
+        }
+
+        /* Hover Zoom Indicator Overlay */
+        .zoom-overlay {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            color: #FFFFFF;
+            padding: 6px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .diagram-image-container:hover .zoom-overlay {
+            opacity: 1;
         }
 
         .diagram-card-content {
@@ -373,6 +405,77 @@
         }
 
         /* ============================================================
+           MODAL / LIGHTBOX FOR PREMIUM EXPERIENCE
+           ============================================================ */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-medium);
+        }
+
+        .lightbox-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: #FFFFFF;
+            padding: 20px;
+        }
+
+        .lightbox-title {
+            color: #FFFFFF;
+            margin-top: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+            line-height: 1;
+            padding: 8px;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-accent);
+        }
+
+        /* ============================================================
            RESPONSIVE — MOBILE
            ============================================================ */
         @media (max-width: 768px) {
@@ -424,6 +527,7 @@
             }
 
             .uml-grid {
+                grid-template-columns: 1fr;
                 gap: 24px;
                 padding: 32px 0 40px;
             }
@@ -444,6 +548,9 @@
 
 <body>
 
+    <!-- ============================================================
+         NAVIGATION
+         ============================================================ -->
     <nav>
         <div class="nav-inner">
             <div class="nav-brand">
@@ -467,18 +574,25 @@
         </div>
     </nav>
 
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
     <main>
         <div class="container">
+            <!-- Header Section -->
             <div class="uml-header">
                 <h2>UML Diagrams</h2>
                 <p>Structural and behavioral models illustrating the architecture and interactions of the SafePath system.</p>
             </div>
 
+            <!-- Diagrams Grid -->
             <div class="uml-grid">
 
+                <!-- Card 1: Class Diagram -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/Class.svg" alt="Class Diagram" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Class.svg" alt="Class Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -487,9 +601,11 @@
                     </div>
                 </div>
 
+                <!-- Card 2: Component Diagram -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/Component.svg" alt="Component Diagram" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Component.svg" alt="Component Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -498,9 +614,11 @@
                     </div>
                 </div>
 
+                <!-- Card 3: Deployment Diagram -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/Deployment.svg" alt="Deployment Diagram" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/Deployment.svg" alt="Deployment Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -509,9 +627,11 @@
                     </div>
                 </div>
 
+                <!-- Card 4: Sequence Diagram — Report -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/SequenceReport.svg" alt="Sequence Diagram — Report" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceReport.svg" alt="Sequence Diagram — Report" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -520,9 +640,11 @@
                     </div>
                 </div>
 
+                <!-- Card 5: Sequence Diagram — Route -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/SequenceRoute.svg" alt="Sequence Diagram — Route" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/SequenceRoute.svg" alt="Sequence Diagram — Route" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -531,9 +653,11 @@
                     </div>
                 </div>
 
+                <!-- Card 6: Use Case Diagram -->
                 <div class="diagram-card">
                     <div class="diagram-image-container">
-                        <img src="https://cdn.jsdelivr.net/gh/pbl3grouph/PBL3_GroupH@main/uml-diagrams/images/UseCase.png" alt="Use Case Diagram" class="diagram-image">
+                        <img src="https://raw.githubusercontent.com/pbl3grouph/PBL3_GroupH/main/uml-diagrams/images/UseCase.png" alt="Use Case Diagram" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
                     </div>
                     <div class="diagram-card-content">
                         <span class="diagram-tag">UML</span>
@@ -546,6 +670,9 @@
         </div>
     </main>
 
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
     <footer>
         <div class="container">
             <p class="footer-brand">SafePath</p>
@@ -554,6 +681,20 @@
         </div>
     </footer>
 
+    <!-- ============================================================
+         LIGHTBOX / MODAL STRUCTURE
+         ============================================================ -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content-wrapper">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <img id="lightboxImg" class="lightbox-image" src="" alt="Zoomed Diagram">
+            <div id="lightboxTitle" class="lightbox-title"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT — Navigation & Lightbox
+         ============================================================ -->
     <script>
         // Mobile hamburger toggle
         document.getElementById('navToggle').addEventListener('click', function () {
@@ -566,6 +707,41 @@
             const navToggle = document.getElementById('navToggle');
             if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
                 navLinks.classList.remove('open');
+            }
+        });
+
+        // Lightbox Functions
+        document.querySelectorAll('.diagram-image-container').forEach(container => {
+            container.addEventListener('click', function() {
+                const img = this.querySelector('.diagram-image');
+                const title = this.closest('.diagram-card').querySelector('h3').innerText;
+                if (img) {
+                    openLightbox(img.src, title);
+                }
+            });
+        });
+
+        function openLightbox(src, title) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            
+            lightboxImg.src = src;
+            lightboxTitle.innerText = title;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent main page scrolling
+        }
+
+        function closeLightbox(event) {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('open');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
             }
         });
     </script>
