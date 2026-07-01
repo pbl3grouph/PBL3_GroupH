@@ -650,14 +650,58 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">Architecture</span>
                         <h3>System Architecture</h3>
-                        <p>1 . Client Layer (The User Experience)
-The user interacts entirely with the Web / Mobile Application. User Profile & Auth: The user logs in or registers, which securely communicates with the backend. Navigation UI: The user enters their destination via the Route Input and views the final, calculated safe path on the Map Interface.
+                        <p style="margin-bottom: 1.5rem;">The updated system is a clean, three-tier architecture (Client, Backend, and External Services/Database) focused entirely on secure user management and safe route planning. By removing the emergency response infrastructure and the weather data dependencies, the system shifts its core focus strictly to proactive route safety analysis based on historical and static safety reports.</p>
 
-1. Backend Server (The Core Logic)
-The backend acts as the brain of the application, processing requests and evaluating data: Authentication Module: Handles credential validation and manages user profiles by reading/writing to the database. Routing Engine: The central orchestrator for navigation. When a user requests a path, this engine fetches real-time coordinates from the GPS Service and map geometry from the Maps API. Safety Analysis Engine: Before a route is finalized, the Routing Engine asks this engine to "Check Risk Level." It queries the database's Safety Reports to evaluate if a path has known hazards or high-risk histories, ensuring the user is routed away from trouble.
+                        <!-- Client Layer -->
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--color-border);">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Client Layer (The User Experience)</h4>
+                            <p style="margin-bottom: 8px; font-size: 0.925rem;">The user interacts entirely with the Web / Mobile Application.</p>
+                            <ul style="list-style: none; padding-left: 0; margin-top: 8px;">
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>User Profile &amp; Auth:</strong> The user logs in or registers, which securely communicates with the backend.
+                                </li>
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 0; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>Navigation UI:</strong> The user enters their destination via the Route Input and views the final, calculated safe path on the Map Interface.
+                                </li>
+                            </ul>
+                        </div>
 
-1. Data & External Integration Layer
-External Services: The system relies on third-party Maps APIs and GPS Services to handle location tracking and baseline mapping functionality. Database: Keeps track of persistent data split into three clean categories: User Data (profiles/credentials), Route History (past trips), and Safety Reports (crowdsourced or curated data used to evaluate route safety).</p>
+                        <!-- Backend Server -->
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--color-border);">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Backend Server (The Core Logic)</h4>
+                            <p style="margin-bottom: 8px; font-size: 0.925rem;">The backend acts as the brain of the application, processing requests and evaluating data:</p>
+                            <ul style="list-style: none; padding-left: 0; margin-top: 8px;">
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>Authentication Module:</strong> Handles credential validation and manages user profiles by reading/writing to the database.
+                                </li>
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>Routing Engine:</strong> The central orchestrator for navigation. When a user requests a path, this engine fetches real-time coordinates from the GPS Service and map geometry from the Maps API.
+                                </li>
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 0; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>Safety Analysis Engine:</strong> Before a route is finalized, the Routing Engine asks this engine to "Check Risk Level." It queries the database's Safety Reports to evaluate if a path has known hazards or high-risk histories, ensuring the user is routed away from trouble.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Data & External Integration Layer -->
+                        <div style="margin-bottom: 0;">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Data &amp; External Integration Layer</h4>
+                            <ul style="list-style: none; padding-left: 0; margin-top: 8px;">
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>External Services:</strong> The system relies on third-party Maps APIs and GPS Services to handle location tracking and baseline mapping functionality.
+                                </li>
+                                <li style="position: relative; padding-left: 18px; margin-bottom: 0; font-size: 0.925rem; line-height: 1.5;">
+                                    <span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
+                                    <strong>Database:</strong> Keeps track of persistent data split into three clean categories: User Data (profiles/credentials), Route History (past trips), and Safety Reports (crowdsourced or curated data used to evaluate route safety).
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
