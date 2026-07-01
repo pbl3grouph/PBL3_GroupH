@@ -624,7 +624,7 @@
                     <div class="diagram-card-content">
                         <span class="diagram-tag">Architecture</span>
                         <h3>System Overview</h3>
-                        <p>A high-level overview of the SafePath system architecture, showing how the frontend, backend, routing engine, and safety data pipeline connect and interact.</p>
+                        <p>The system integrates OpenStreetMap road networks, municipal streetlight data, and historical crime records, then validates and normalises them to produce clean spatial datasets. These datasets are processed through spatial feature extraction and composite safety cost scoring, generating a custom-weighted road network that can be used by routing engines such as GraphHopper or ORS to recommend safer travel routes.</p>
                     </div>
                 </div>
 
@@ -638,6 +638,26 @@
                         <span class="diagram-tag">Architecture</span>
                         <h3>Repository Structure</h3>
                         <p>An overview of the SafePath repository layout, detailing how the codebase is organized across the frontend, backend, and data processing modules.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: System Architecture -->
+                <div class="diagram-card">
+                    <div class="diagram-image-container">
+                        <img src="images/SystemArchitecture.png" alt="System Architecture" class="diagram-image">
+                        <div class="zoom-overlay">🔍</div>
+                    </div>
+                    <div class="diagram-card-content">
+                        <span class="diagram-tag">Architecture</span>
+                        <h3>System Architecture</h3>
+                        <p>1 . Client Layer (The User Experience)
+The user interacts entirely with the Web / Mobile Application. User Profile & Auth: The user logs in or registers, which securely communicates with the backend. Navigation UI: The user enters their destination via the Route Input and views the final, calculated safe path on the Map Interface.
+
+1. Backend Server (The Core Logic)
+The backend acts as the brain of the application, processing requests and evaluating data: Authentication Module: Handles credential validation and manages user profiles by reading/writing to the database. Routing Engine: The central orchestrator for navigation. When a user requests a path, this engine fetches real-time coordinates from the GPS Service and map geometry from the Maps API. Safety Analysis Engine: Before a route is finalized, the Routing Engine asks this engine to "Check Risk Level." It queries the database's Safety Reports to evaluate if a path has known hazards or high-risk histories, ensuring the user is routed away from trouble.
+
+1. Data & External Integration Layer
+External Services: The system relies on third-party Maps APIs and GPS Services to handle location tracking and baseline mapping functionality. Database: Keeps track of persistent data split into three clean categories: User Data (profiles/credentials), Route History (past trips), and Safety Reports (crowdsourced or curated data used to evaluate route safety).</p>
                     </div>
                 </div>
 
